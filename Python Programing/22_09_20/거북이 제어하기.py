@@ -15,6 +15,15 @@ while True :
     elif command == "r" :
         t.right(90)
         t.forward(100)
+    elif command == "f" :
+        t.forward(100)
+    elif command == "h" :
+        t.shapesize(30,30)
+    elif command == "n" :
+        t.shapesize(3,3)
+    elif command == "z" :
+        aa = int(input('사이즈를 입력하세요'))
+        t.shapesize(3*aa,3*aa)
     else : 
         break
 
