@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+
+    <head>
+    <meta charset="UTF-8">
+    <title>Welcome2</title>
+    </head>
+    
+    <body style = "background-color : aqua">
+    
+    <h2>오늘의 명언</h2><p>
+    
+    <table border = "1">
+            <tr>
+                <td><strong>위인</strong></td><td th:text="${wee}">내용</td>
+            </tr>
+            <tr>
+                <td><strong>명언</strong></td><td th:text="${meong}">내용</td>
+                <!--th와 td는 표기상 같다.-->
+            </tr>
+    </table>   
+    </body>
+    
+</html>
