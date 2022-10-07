@@ -95,10 +95,8 @@ public class YourController{
 	
 	@GetMapping("/phone")
 	public String phone() {
-		return "phone";
+		return "ex1/phone";
 	}
-	
-	
 	@PostMapping("/phone/result")
 	public String phoneThanks(HttpSession session, String model, String company, Model mo) {
 		
@@ -113,7 +111,7 @@ public class YourController{
 			mo.addAttribute("msg",msg);
 			
 		}
-		return "phoneThanks";
+		return "ex1/phoneThanks";
 		
 	}
 	@GetMapping("/phone/session")
@@ -121,6 +119,6 @@ public class YourController{
 		mo.addAttribute("model", session.getAttribute ("model"));
 		mo.addAttribute("company", session.getAttribute ("company"));
 		session.invalidate();
-		return "phoneSession";
+		return "ex1/phoneSession";
 	}
 }
