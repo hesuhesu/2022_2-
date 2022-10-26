@@ -10,6 +10,15 @@ a2 = '{}\\replacement_output.txt'.format(a)
 Test1 = open(a1, 'r', encoding = 'utf8')
 Test2 = open(a2, 'w', encoding = 'utf8')
 
+def next_price(A,B) :
+    C = A.sort() # A는 inputs[:5] 
+    D = 100
+    for i in C : # inputs[:5] 중에 B인 emptyList1의 최댓값을 넘는 제일 작은값을 출력.
+        if i > B :
+            D = A.index(i)
+            break
+    return D
+
 ab = int(Test1.readline())         # 계산을 반복할 횟수를 불러온다.
 
 for i in range(ab*2) :
@@ -20,31 +29,29 @@ for i in range(ab*2) :
     else :
         listA = Test1.readline()
         inputs = listA.split()
-        print(inputs)
-        BringList = []          # 1차 읽어온 리스트.
+        print(inputs)  # 가져온 리스트.
         emptyList1 = []         # 임시로 기입할 리스트
         emptyList2 = []
-        emptyList3 = []        # 최종 출력을 위한 리스트.
+        emptyList3 = []        # run의 개수
         line = 1               # 줄 갯수를 의미.
-        for i in range(bc) :
-            BringList.append(int(inputs[i]))
 
+        emptyList3.append(line)
         for i in range(bc) : 
-            find_list = min(BringList[:5])
+            find_list = min(inputs[:5])
+            print("{}는 제일 작은 값입니다.".format(find_list))
+            print("최소값의 위치는 {}번째".format(inputs.index(find_list) + 1))        # 인덱스의 위치를 알려준다.
+            
+            if find_list > emptyList1[-1] :
+                emptyList1.append(find_list)
+                inputs.remove(find_list)
 
-            if find_list < emptyList1[-1] :  # 만약 5개 내에 숫자가 전 숫자보다 작다면
-                BringList.index(find_list)
+            elif find_list < emptyList1[-1] :  # 5개 중 젤 작은 수가 추가된 줄 제일 큰 수보다 작다면
+                next_price(inputs[:5],emptyList1[-1])
+                if next_price == 100 :
+                    line += 1
+                    emptyList3[0] += 1 # 한 줄이 늘어남
+                    emptyList2.append(emptyList1)
 
-
-            print("최소값의 위치는 {}번째".format(BringList.index(find_list) + 1))        # 인덱스의 위치를 알려준다.
-            print(find_list)
-            emptyList1.append(find_list)
-            BringList.remove(find_list)
-
-        
-        
-        Test2.write(emptyList3[0]) # 최종적으로 OUTPUT 파일에 저장할 목록
-                
 
 
 Test1.close()
