@@ -1,7 +1,4 @@
 import pathlib
-from tempfile import TemporaryFile
-
-fp = TemporaryFile('w+t') # 임시 파일 만들고 데이터 쓰기
 
 a = pathlib.Path(__file__).parent.absolute()
 a1 = '{}\\replacement_input.txt'.format(a)
@@ -19,40 +16,66 @@ def next_price(A,B) :
             break
     return D
 
+listnum = 0
+
 ab = int(Test1.readline())         # 계산을 반복할 횟수를 불러온다.
 
 for i in range(ab*2) :
     
     if i % 2 == 0 :
         bc = int(Test1.readline())
-        print(bc)
+        print("\n----------------------------------------------")
+        print("\n아래 리스트의 갯수는 {}입니다.\n".format(bc))
     else :
         listA = Test1.readline()
         inputs = listA.split()
+        print("----------------------------------------------\n")
         print(inputs)  # 가져온 리스트.
+        print("\n----------------------------------------------\n")
         emptyList1 = []         # 임시로 기입할 리스트
         emptyList2 = []
         emptyList3 = []        # run의 개수
         line = 1               # 줄 갯수를 의미.
+        
+        emptyList3.append(line) # run의 시작.
+        
+        min_price = min(inputs[:5]) # 처음 1차 최솟값을 도출
+        print("{}는 제일 작은 값입니다.".format(min_price))
+        emptyList1.append(min_price) 
+        inputs.remove(min_price)
+        print(emptyList1)
 
-        emptyList3.append(line)
-        for i in range(bc) : 
-            find_list = min(inputs[:5])
-            print("{}는 제일 작은 값입니다.".format(find_list))
-            print("최소값의 위치는 {}번째".format(inputs.index(find_list) + 1))        # 인덱스의 위치를 알려준다.
+        while 1 :
+
+            if (inputs == []) : # 리스트 내에 아무것도 없을 때.
+                break
             
-            if find_list > emptyList1[-1] :
-                emptyList1.append(find_list)
-                inputs.remove(find_list)
+            elif min_price > emptyList1[-1] :
+                emptyList1.append(min_price)
+                inputs.remove(min_price)
+                print(emptyList1)
 
-            elif find_list < emptyList1[-1] :  # 5개 중 젤 작은 수가 추가된 줄 제일 큰 수보다 작다면
+            elif min_price < emptyList1[-1] :  # 5개 중 젤 작은 수가 추가된 줄 제일 큰 수보다 작다면
+                emptyList1.pop()
                 next_price(inputs[:5],emptyList1[-1])
+                print("동결")
                 if next_price == 100 :
                     line += 1
-                    emptyList3[0] += 1 # 한 줄이 늘어남
+                    emptyList3[listnum] += 1 # 한 줄이 늘어남
                     emptyList2.append(emptyList1)
 
+            else : # 오류나면 삭제하기.
+                min_price = min(inputs[:5])
+                print("{}는 제일 작은 값입니다.".format(min_price))
+            
+                emptyList1.append(min_price)
+                inputs.remove(min_price)
+                print(emptyList1)
 
+        listnum += 1
+        print(emptyList2)
+        print(emptyList3)
+        
 
 Test1.close()
 Test2.close()
