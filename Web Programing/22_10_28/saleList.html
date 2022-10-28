@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.com">
+<head>
+<meta charset = "UTF-8">
+<title>제품_리스트</title>
+</head>
+<body style="background:linear-gradient( to right, green, aqua )">
+<div align="center">
+<h3>newList(구매번호 순)</h3>
+<table width = "600" border = "1">
+<tr> <th>구매번호 <th>id <th>제품명 <th>구매 일시 <th>구매 수량 <th>구매 금액
+<tr th:each="m:${list2}">
+<td th:text="${m.number}" style = "color:blue; font-weight:bold">number
+<td th:text="${m.id}">id
+<td th:text="${m.name}">name
+<td th:text="${m.rdate}">rdate
+<td th:text="${m.count}" style = "color:red; text-align:right">count
+<td th:text="${m.price}">price
+</table><br>
+<a href="/">메인 홈으로 돌아가기</a>
+</div>
+</body>
+</html>
