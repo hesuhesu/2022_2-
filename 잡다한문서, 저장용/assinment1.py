@@ -7,15 +7,6 @@ a2 = '{}\\replacement_output.txt'.format(a)
 Test1 = open(a1, 'r', encoding = 'utf8')
 Test2 = open(a2, 'w', encoding = 'utf8')
 
-def next_price(A,B) :
-    C = A.sort() # A는 inputs[:5] 
-    D = 100
-    for i in C : # inputs[:5] 중에 B인 emptyList1의 최댓값을 넘는 제일 작은값을 출력.
-        if i > B :
-            D = A.index(i)
-            break
-    return D
-
 listnum = 0
 
 ab = int(Test1.readline())         # 계산을 반복할 횟수를 불러온다.
@@ -47,30 +38,35 @@ for i in range(ab*2) :
 
         while 1 :
 
+            min_price = min(inputs[:5])
+            print("{}는 제일 작은 값입니다.".format(min_price))
+            print("위치는 '{}' 입니다.".format(inputs.index(min_price)+1))
             if (inputs == []) : # 리스트 내에 아무것도 없을 때.
                 break
             
-            elif min_price > emptyList1[-1] :
+            elif min_price >= emptyList1[-1] : # 5개 중 젤 작은 수가 추가된 줄 제일 큰 수보다 크다면 정상 구동
                 emptyList1.append(min_price)
-                inputs.remove(min_price)
+                print("위치는 '{}' 입니다.".format(inputs.index(min_price)+1))
+                inputs[inputs.index(min_price)], inputs[5] = inputs[5], inputs[inputs.index(min_price)]
+                inputs.remove(5)
                 print(emptyList1)
 
             elif min_price < emptyList1[-1] :  # 5개 중 젤 작은 수가 추가된 줄 제일 큰 수보다 작다면
-                emptyList1.pop()
-                next_price(inputs[:5],emptyList1[-1])
-                print("동결")
-                if next_price == 100 :
-                    line += 1
-                    emptyList3[listnum] += 1 # 한 줄이 늘어남
-                    emptyList2.append(emptyList1)
+                print("현 값을 동결합니다.")
+                for i in inputs[:5] :
+                    if i == inputs.index(min_price) :
+                        pass
+                    elif i >= emptyList1[-1] :
+                        min_price = i
+                    
+                if 
 
-            else : # 오류나면 삭제하기.
-                min_price = min(inputs[:5])
-                print("{}는 제일 작은 값입니다.".format(min_price))
+                line += 1
+                emptyList3[listnum] += 1 # 한 줄이 늘어남
+                emptyList2.append(emptyList1)
+
             
-                emptyList1.append(min_price)
-                inputs.remove(min_price)
-                print(emptyList1)
+                
 
         listnum += 1
         print(emptyList2)
