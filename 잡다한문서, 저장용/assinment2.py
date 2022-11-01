@@ -19,7 +19,6 @@ for i in range(ab*2) :
         print("\n{}번째 리스트의 갯수는 {}입니다.\n".format(Anum,bc))
         Anum += 1
     else :
-        
         listA = Test1.readline()
         inputs = listA.split()
         print("----------------------------------------------\n")
@@ -34,26 +33,25 @@ for i in range(ab*2) :
 
         outputLine1.append(line) # run의 시작.
         
-        buffer = sorted(inputs[:5])
-        del inputs[:5]
-        File_content.append(buffer[0])
-        print("최최의 버퍼의 상황 : {}".format(buffer))
-        del buffer[buffer_start_number]
+        inputs = list(map(int, inputs)) # 리스트 정수형으로 변환(원래 문자열이였음)
+        
+        buffer = inputs[:5]
+        print("최초의 버퍼의 상황 : {}".format(buffer))
+        del inputs[0:5]
+        buffer.sort()
+        print("sort 한 버퍼의 상황 : {}".format(buffer))
+        File_content.append(min(buffer))
         print("최초의 잠시 파일 콘텐츠 현재 상황 : {}".format(File_content))
+        del buffer[0]
         
         listnum = 0
-        anynum = 0
 
         while 1 : 
 
             if listnum == 0 :
                 listnum += 1
-                
                 pass
-            if File_content == None :
-                File_content.append(-100)
 
-            
 
             try :
                 buffer.append(inputs[0])
@@ -134,18 +132,12 @@ for i in range(ab*2) :
                     File_content = []
                     buffer_start_number = 0
             '''
-    
-    '''
-    Test2.write(line)                         # 여기를 풀면 답이 나올듯
-    
-    for i in range(len(outputLine2)) :
-
-        for j in range(len(outputLine2[i])) :
-            Test2.write(outputLine2[i][j])
-    '''
-                
+        
         
                 
+        
+        
+
                 
             
         
