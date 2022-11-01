@@ -28,7 +28,7 @@ for i in range(ab*2) :
         File_content = []
         outputLine1 = []        # run의 개수
         outputLine2 = []        # 임시로 run 리스트들 저장하는 곳
-        line = 1               # 줄 갯수를 의미.
+        line = 1             # 줄 갯수를 의미.
         buffer_start_number = 0 # 동결되고 난 후의 시작번호
 
         outputLine1.append(line) # run의 시작.
@@ -40,7 +40,7 @@ for i in range(ab*2) :
         del inputs[0:5]
         buffer.sort()
         print("sort 한 버퍼의 상황 : {}".format(buffer))
-        File_content.append(min(buffer))
+        File_content.append(buffer[0])
         print("최초의 잠시 파일 콘텐츠 현재 상황 : {}".format(File_content))
         del buffer[0]
         
@@ -132,8 +132,32 @@ for i in range(ab*2) :
                     File_content = []
                     buffer_start_number = 0
             '''
+        File_content2 = list(File_content)
+        File_content3 = []
+        for i in range(len(File_content)) :
+            if i == 0 :
+                pass
+            if File_content[i] < File_content[i-1] :
+                File_content3.append(File_content2[:i])
+                del File_content2[:i]
+            elif i == len(File_content) - 1 :
+                File_content3.append(File_content2[:])
+            
+        del File_content3[0] # 수정해야함.
+        
+        print(File_content3)
+        File_content = list(map(str, File_content))
+        File_content2 = list(map(str, File_content2))
+        File_content3 = list(map(str, File_content3))
+        line = str(line)
         
         
+
+        Test2.write(line)
+        for i in range(len(File_content3)) :
+            Test2.write(File_content3[i]+" ")
+            Test2.write("\n")
+
                 
         
         
