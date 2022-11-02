@@ -8,7 +8,7 @@ import sys
 '''
 
 path = (os.path.sep.join(sys.argv[0].split(os.path.sep)[:-1]))
-path2 = os.path.dirname(os.path.abspath(__file__)) 
+path2 = os.path.dirname(os.path.abspath(__file__))
 path3 = os.getcwd()
 
 a1 = '{}\\replacement_input.txt'.format(path3)  # 추가로 파일 이름까지 입력하면 준비 완료입니다.
@@ -98,7 +98,7 @@ for i in range(ab*2) :
             except :  # 예외 사항에 또 예외를 두었습니다. 2가지 예외 사항이 있습니다.
 
                 try :
-                    File_content.append(buffer[0]) # buffer[buffer_start_number]가 없는 값일 때 시도됩니다. 1차 예외이고, 이후 예외는 105번 줄에 기입했습니다.
+                    File_content.append(buffer[0]) # buffer[buffer_start_number]가 없는 값일 때 시도됩니다. 1차 예외이고, 이후 예외는 107번 줄에 기입했습니다.
                     print("버퍼의 2 상황 : {} 버퍼의 시작점 : {}\n".format(buffer, buffer_start_number)) 
                     # 실행 시 버퍼 출력 설명문을 보면 "버퍼의 2 상황"으로 바뀐걸 알 수 있습니다. 이 때부턴 buffer_start_number은 멈추고 남은 값들을 오름차순으로 넣습니다.
                     del buffer[0]
@@ -146,3 +146,6 @@ Test1.close()
 Test2.close() # 마무리 파일 입력 후 닫기.
 
 # pyinstaller --onefile [파일명].py
+
+path = os.getcwd()
+print(path + "\\replacement_input.txt")
