@@ -43,6 +43,7 @@ for i in range(ab*2) :
         File_content.append(buffer[0])
         print("최초의 잠시 파일 콘텐츠 현재 상황 : {}".format(File_content))
         del buffer[0]
+        print("----------------------------------------------\n")
         
         listnum = 0
 
@@ -51,8 +52,7 @@ for i in range(ab*2) :
             if listnum == 0 :
                 listnum += 1
                 pass
-
-
+                
             try :
                 buffer.append(inputs[0])
                 buffer.sort()
@@ -60,12 +60,11 @@ for i in range(ab*2) :
                 
             except :
                 buffer.sort()
-                
 
             try : 
                 if buffer[buffer_start_number] >= File_content[-1] :
                     File_content.append(buffer[buffer_start_number])
-                    print("버퍼의 상황 : {}".format(buffer))
+                    print("버퍼의 1 상황 : {} 버퍼의 시작점 : {}".format(buffer, buffer_start_number))
                     del buffer[buffer_start_number]
                     print("파일 콘텐츠의 현재 상황 : {}".format(File_content))
                 
@@ -73,97 +72,55 @@ for i in range(ab*2) :
                     buffer_start_number += 1
                     if buffer_start_number < 5 :
                         File_content.append(buffer[buffer_start_number])
-                        print("버퍼의 상황 : {}".format(buffer))
+                        print("버퍼의 1 상황 : {} 버퍼의 시작점 : {}".format(buffer, buffer_start_number))
                         del buffer[buffer_start_number]
                         print("파일 콘텐츠의 현재 상황 : {}".format(File_content))
                     
-                    else :
-                        line += 1
-                        outputLine2.append(File_content)
-                        File_content = []
+                    elif buffer_start_number == 5 :
                         buffer_start_number = 0
             except : 
                 try :
-                    if buffer[-1] >= File_content[-1] :
-                        File_content.append(buffer[0])
-                        print("버퍼의 상황 : {}".format(buffer))
-                        del buffer[0]
-                        print("파일 콘텐츠의 현재 상황 : {}".format(File_content))
-                
-                    elif buffer[-1] < File_content[-1] :
-                        buffer_start_number += 1
-                        if buffer_start_number < 5 :
-                            File_content.append(buffer[0])
-                            print("버퍼의 상황 : {}".format(buffer))
-                            del buffer[0]
-                            print("파일 콘텐츠의 현재 상황 : {}".format(File_content))
-                    
-                        else :
-                            line += 1
-                            outputLine2.append(File_content)
-                            File_content = []
-                            buffer_start_number = 0
+                    File_content.append(buffer[0])
+                    print("버퍼의 2 상황 : {} 버퍼의 시작점 : {}".format(buffer, buffer_start_number))
+                    del buffer[0]
+                    print("파일 콘텐츠의 현재 상황 : {}".format(File_content))
                 except : 
                     break
 
-                        
-                    
-            
 
-            
-            '''
-            if (buffer[buffer_start_number] >= File_content[-1]):
-                File_content.append(buffer[buffer_start_number])
-                print("버퍼의 상황 : {}".format(buffer))
-                del buffer[buffer_start_number]
-                print("파일 콘텐츠의 현재 상황 : {}".format(File_content))
-                
-            elif buffer[buffer_start_number] < File_content[-1] :
-                buffer_start_number += 1
-                if buffer_start_number < 5 :
-                    File_content.append(buffer[buffer_start_number])
-                    print("버퍼의 상황 : {}".format(buffer))
-                    del buffer[buffer_start_number]
-                    print("파일 콘텐츠의 현재 상황 : {}".format(File_content))
-                    
-                else :
-                    line += 1
-                    outputLine2.append(File_content)
-                    File_content = []
-                    buffer_start_number = 0
-            '''
+                        
+        # 파일 리스트화 및 정수형으로 변환 + 문자열로 변환
         File_content2 = list(File_content)
-        File_content3 = []
-        for i in range(len(File_content)) :
-            if i == 0 :
-                pass
+
+        w = 0 # insert를 하게되면 자연스럽게 들어있는 갯수가 증가한다. 이를 위해 w라는 변수를 사용.
+        for i in range(1,len(File_content)) :
+            w += 1
             if File_content[i] < File_content[i-1] :
-                File_content3.append(File_content2[:i])
-                del File_content2[:i]
-            elif i == len(File_content) - 1 :
-                File_content3.append(File_content2[:])
+                File_content2.insert(w,"\n")
+                w += 1
             
-        del File_content3[0] # 수정해야함.
         
-        print(File_content3)
+        print(File_content2)
+        
+        
+        FW = File_content2.count("\n") + 1
+
+        print("\n----------------------------------------------\n")
+        print("현재 러닝의 상태는 \n{}입니다.".format(File_content2))
         File_content = list(map(str, File_content))
         File_content2 = list(map(str, File_content2))
-        File_content3 = list(map(str, File_content3))
-        line = str(line)
         
         
+        FW = str(FW)
+        
+        # 파일 쓰기 부분.
+        Test2.write(FW)
+        Test2.write("\n")
+        for i in range(len(File_content2)) :
+            Test2.writelines(File_content2[i] + " ")
 
-        Test2.write(line)
-        for i in range(len(File_content3)) :
-            Test2.write(File_content3[i]+" ")
-            Test2.write("\n")
+        Test2.write("\n")
 
-                
-        
-        
-
-                
-            
         
 
 Test1.close()
