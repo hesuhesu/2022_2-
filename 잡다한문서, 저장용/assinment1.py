@@ -11,8 +11,8 @@ path = (os.path.sep.join(sys.argv[0].split(os.path.sep)[:-1]))
 path2 = os.path.dirname(os.path.abspath(__file__))
 path3 = os.getcwd()
 
-a1 = '{}\\replacement_input.txt'.format(path3)  # 추가로 파일 이름까지 입력하면 준비 완료입니다.
-a2 = '{}\\replacement_output.txt'.format(path3)
+a1 = '{}\\replacement_input.txt'.format(path)  # 추가로 파일 이름까지 입력하면 준비 완료입니다.
+a2 = '{}\\replacement_output.txt'.format(path)
 
 Test1 = open(a1, 'r', encoding = 'utf8')
 Test2 = open(a2, 'w', encoding = 'utf8')
