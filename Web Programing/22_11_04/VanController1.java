@@ -45,10 +45,11 @@ public class VanController1 {
 		}
 		else {
 			for(int i=0; i < arr.length; i++) {
-				temp += arr[i] + ", ";
 				if (i == (arr.length - 1)) {
 					temp += arr[i];
+					break;
 				}
+				temp += arr[i] + ", ";	
 			}
 		}
 		mo.addAttribute("foods", temp);
