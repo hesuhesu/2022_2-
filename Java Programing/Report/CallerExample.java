@@ -1,23 +1,9 @@
 package practice;
 
 import java.util.*;
-/*
-
-1. 영상 수업에 포함된 callback 함수 예제를 활용하여 아래의 코드를 완성하라.
-2. setCallBack() 메소드를 호출하면서 callback 메소드를 전달하도록 구현, 인터페이스 CallBack을 구현하는 익명 클래스 형태로 구현할 것
-3. execute() 메소드를 호출하여 사용자 입력을 시작함
-[Hint] 수업 자료에 포함된 callback 예제와 거의 유사한 형태임
-
-출력 예시 :
-
-1과 2중 하나를 입력하세요.
-1
-Caller : Input from Callee 1
-callee's num : 1
-
- */
 
 class Callee {
+	
 	public interface CallBack {
 		public void onInputOne(Callee callee);
 		public void onInputTwo(Callee callee);
@@ -45,8 +31,21 @@ class Callee {
 		this.num = 0;
 		System.out.println("1과 2중 하나를 입력하세요.");
 		this.num = sc.nextInt();
+		
+		if(this.callback != null) {
+			if (this.num == 1) {
+				System.out.println("Caller : Input from Callee 1");
+				this.callback.onInputOne(Callee.this);
+			}
+			else if (this.num == 2) {
+				System.out.println("Caller : Input from Callee 2");
+				this.callback.onInputTwo(Callee.this);
+			}
+			else {
+				System.out.println("1과 2 중 하나를 입력해주시요!");
+			}
+		}
 	}
-	
 }
 
 public class CallerExample {
@@ -55,7 +54,18 @@ public class CallerExample {
 		Callee callee = new Callee();
 		
 		// setCallBack 메소드 구현
-		
+		callee.setCallBack(new Callee.CallBack() {
+			
+			@Override
+			public void onInputTwo(Callee callee) {
+				System.out.println("callee's num : 2");
+			}
+			
+			@Override
+			public void onInputOne(Callee callee) {
+				System.out.println("callee's num : 1");
+			}
+		});
 		callee.execute();
 	}
 
