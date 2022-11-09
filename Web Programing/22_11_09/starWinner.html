@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.com">
+<head><meta charset="UTF8">
+<title>승자</title></head>
+<body>
+<div align = "center">
+<h2>Congratulations</h2>
+<strong th:text = "|승자는 ${winner}입니다!!!|"></strong><p>
+<img th:src ="|/${winner}.jpg|" width="400" height="400" alt = "can't show jpg">
+</div>
+</body>
+</html>
