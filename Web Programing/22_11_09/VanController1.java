@@ -3,9 +3,7 @@ package com.webp.p5;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,9 +21,12 @@ public class VanController1 {
 	@Autowired
 	private memoRepository memoRep;
 	
-	@GetMapping("/")
-	public String home() {
-		return "home";
+	@Autowired
+	private StarRepository starRep;
+	
+	@GetMapping("/home2")
+	public String home2() {
+		return "home2";
 	}
 	
 	@GetMapping("/study")
@@ -48,10 +49,11 @@ public class VanController1 {
 		}
 		else {
 			for(int i=0; i < arr.length; i++) {
-				temp += arr[i] + ", ";
 				if (i == (arr.length - 1)) {
 					temp += arr[i];
+					break;
 				}
+				temp += arr[i] + ", ";
 			}
 		}
 		mo.addAttribute("foods", temp);
@@ -93,12 +95,12 @@ public class VanController1 {
 		mm.memo = memo;
 		memoRep.save(mm);
 		mo.addAttribute("msg", "잘 저장되었습니다 ~ ^.^");
-		return "popups";
+		return "popups1";
 	}
 	
 	@GetMapping("/member/list")
 	public String memberList (Model mo) {
-		List<Member> list = memRep.findAll(Sort.by(Sort.Direction.DESC,"rdate")); // 변수명.findAll()을 호출하면 MySQL에서 select * from member;을 한 것과 같다.
+		List<Member> list = memRep.findAll(); // 변수명.findAll()을 호출하면 MySQL에서 select * from member;을 한 것과 같다.
 		mo.addAttribute("list", list);
 		return "memberList";	
 	}
@@ -136,8 +138,14 @@ public class VanController1 {
 	}
 	@GetMapping("/star/winner")
 	public String starWinner(HttpSession session, Model model, String winner) {
+		starRep.updateCount(winner);
 		model.addAttribute("winner", winner);
-		session.invalidate();
 		return "starWinner";
+	}
+	@GetMapping("/star/list")
+	public String starList (Model mo) {
+		List<Star> list4 = starRep.findAll();
+		mo.addAttribute("list4", list4);
+		return "starList";	
 	}
 }
