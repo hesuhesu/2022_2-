@@ -1,0 +1,11 @@
+<body>
+<script th:inline="javascript">
+let msg = [[${msg}]]; // let은 데이터 타입
+let url = [[${url}]];
+alert(msg);
+if(url == 'back')
+	history.back(); // 데이터 살아있음
+else
+	location.href=url;
+</script>
+</body>
