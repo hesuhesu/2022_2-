@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.com">
+<head><meta charset="UTF8">
+<title>star 투표 결과</title></head>
+<body style = "background-color : yellow">
+<div align="center">
+<h3>투표 결과</h3>
+<table border = "1">
+<tr> <th>이름 <th>표의 수
+<tr th:each="s:${list4}">
+<td th:text="${s.name}">name
+<td th:text="${s.count}">count
+</table><br>
+
+<form action = "/star/reset">
+<input type="submit" value = "초기화">
+</form><p>
+
+<a href = "/star/1">처음부터</a>
+</div>
+</body>
+</html>
