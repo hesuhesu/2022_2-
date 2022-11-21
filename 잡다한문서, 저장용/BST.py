@@ -1,6 +1,12 @@
 import os
 import sys
 
+'''
+먼저 실행해보시는게 이해하기 더 쉬울 수 있습니다!
+주석이 너무 길어서 가독성이 떨어집니다..!
+그만큼 상세 설명 하였으므로 프로그램에 문제는 없다고 생각합니다.
+'''
+
 path = (os.path.sep.join(sys.argv[0].split(os.path.sep)[:-1]))
 path2 = os.path.dirname(os.path.abspath(__file__))
 path3 = os.getcwd()
