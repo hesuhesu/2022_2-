@@ -77,4 +77,15 @@ public class SuController2 {
 		}
 		return "popups";
 	}
+	
+	@GetMapping("/bank/list")
+	public String bankList(HttpSession session, Model mo) {
+		List<Bank> list = bankSvc.bankList();
+		int count = bankSvc.findCount();
+		String sum = bankSvc.findSum();
+		mo.addAttribute("count", count);
+		mo.addAttribute("sum", sum);
+		mo.addAttribute("list", list);
+		return "bankList";
+	}
 }

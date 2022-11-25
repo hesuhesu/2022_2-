@@ -61,4 +61,16 @@ public class BankService {
 		
 		return true;
 	}
+	
+	public List<Bank> bankList(){
+		return bankRep.findAllOrderByIdTdateDesc();
+	}
+	public int findCount() {
+		return memRep.findCount();
+	}
+	public String findSum() {
+		int sum = memRep.findSum();
+		DecimalFormat df = new DecimalFormat("###,###");
+		return df.format(sum);
+	}
 }

@@ -21,4 +21,7 @@ public interface MemberRepository extends JpaRepository<Member, String>{
 	@Modifying
 	@Query("update Member set balance=balance+?2 where id=?1")
 	int updateBalance(String id, int money);
+	
+	@Query("select sum(balance) from Member")
+	int findSum();
 }
