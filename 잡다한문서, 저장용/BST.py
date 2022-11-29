@@ -1,11 +1,7 @@
 import os
 import sys
 
-'''
-먼저 실행해보시는게 이해하기 더 쉬울 수 있습니다!
-주석이 너무 길어서 가독성이 떨어집니다..!
-그만큼 상세 설명 하였으므로 프로그램에 문제는 없다고 생각합니다.
-'''
+
 
 path = (os.path.sep.join(sys.argv[0].split(os.path.sep)[:-1]))
 path2 = os.path.dirname(os.path.abspath(__file__))
@@ -21,6 +17,32 @@ Test1 = open(a1, 'r', encoding = 'utf8')
 Test2 = open(a2, 'w', encoding = 'utf8')
 
 ab = int(Test1.readline())         # replacement_input.txt 파일에서 계산을 반복할 횟수를 불러옵니다(줄 갯수).
+
+
+class Node(object):
+    def __init__(self, data):
+        self.data = data
+        self.left = self.right = None
+
+
+class BinarySearchTree(object):
+    def __init__(self):
+        self.root = None
+
+    def insert(self, data):
+        self.root = self._insert_value(self.root, data)
+        return self.root is not None
+
+    def _insert_value(self, node, data):
+        if node is None:
+            node = Node(data)
+        else:
+            if data <= node.data:
+                node.left = self._insert_value(node.left, data)
+            else:
+                node.right = self._insert_value(node.right, data)
+        return node
+    
 
 listnum = 0
 Anum = 1 # 그냥 몇 번째 리스트인지 알려주는 정수형 변수입니다.
@@ -41,6 +63,9 @@ for i in range(ab) :
     '''
     여기에 대략적인 BST 구현
     '''
+    
+    
+
 
     list3 = int(Test1.readline()) # 검색할 키의 개수 1차
     print("----------------------------------------------")
