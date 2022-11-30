@@ -24,8 +24,10 @@ class Node(object):
         self.data = data
         self.left = self.right = None
 
-
 class BinarySearchTree(object):
+
+    level = 0
+
     def __init__(self):
         self.root = None
 
@@ -43,6 +45,47 @@ class BinarySearchTree(object):
                 node.right = self._insert_value(node.right, data)
         return node
     
+    def find(self, key):
+        return self._find_value(self.root, key)
+
+    def _find_value(self, root, key):
+        if root is None or root.data == key:
+            return root is not None
+        elif key < root.data:
+            return self._find_value(root.left, key)
+        else:
+            return self._find_value(root.right, key)
+
+    def delete(self, key):
+        self.root, deleted = self._delete_value(self.root, key)
+        return deleted
+
+    def _delete_value(self, node, key):
+        if node is None:
+            return node, False
+
+        deleted = False
+        if key == node.data:
+            deleted = True
+            if node.left and node.right:
+                # replace the node to the leftmost of node.right
+                parent, child = node, node.right
+                while child.left is not None:
+                    parent, child = child, child.left
+                child.left = node.left
+                if parent != node:
+                    parent.left = child.right
+                    child.right = node.right
+                node = child
+            elif node.left or node.right:
+                node = node.left or node.right
+            else:
+                node = None
+        elif key < node.data:
+            node.left, deleted = self._delete_value(node.left, key)
+        else:
+            node.right, deleted = self._delete_value(node.right, key)
+        return node, deleted
 
 listnum = 0
 Anum = 1 # 그냥 몇 번째 리스트인지 알려주는 정수형 변수입니다.
@@ -64,8 +107,11 @@ for i in range(ab) :
     여기에 대략적인 BST 구현
     '''
     
+    bst = BinarySearchTree()
+    for i in list2 :
+        bst.insert(i)
     
-
+    bst
 
     list3 = int(Test1.readline()) # 검색할 키의 개수 1차
     print("----------------------------------------------")
