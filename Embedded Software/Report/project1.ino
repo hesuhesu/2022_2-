@@ -1,5 +1,4 @@
 #include <Servo.h>
-#include <IRremote.h>
 
 /*
   근전도 센서를 기용한 이유 :
@@ -9,6 +8,7 @@
 
   생활체육에 관심이 많은 사람으로써, 신체의 활동이나 움직임 운동을 독학할 때 유용한 방법이 없을까? 하는 호기심에서 나온 기획안.
 
+
   <상황 전개 - 1>
   1. 근전도 센서와 연결된 패드를 측정하고 싶은 부위(서로 다른 부위 둘)에 붙인다.
   2. 주동근을 확인하기 위해 운동을 시도하는데, 측정 시 지인이 있으면 모니터링 하기 좋다.
@@ -17,20 +17,17 @@
   <상황 전개 - 2>
   1. 근전도 센서를 동일 부위 다른 부분에 붙인다(ex. 척추기립근)
   2. 아래의 코드를 사용하여 부저가 울리는지 확인한다.
-  3. 울리지 않고 자연스럽게 진행이 된다면 운동을 잘하고 있음을 알 수 있다.
-
-  <상황 전개 - 3>
-  1. 가벼운 척추측만증이나, 골반이 살짝 휜 사람 등등의 환자들에게 추천된다
-  2. 상황 전개 - 2 와 같이 동일 부위 다른 부분에 붙이고 경과를 측정한다(센서의 차이를 감안해서 날마다 줄여가는 식으로 훈련)
+  3. 울리지 않고 자연스럽게 진행이 된다면 원활히 진행 됨을 알 수 있다.
+ 
 
   조건 1 :
   센서 한 쌍(2개)로 값을 측정하여 값이 50(예상값)보다 크게 차이난다면 부저가 울리도록 구현.
 
   조건 2 :
-  리모컨과 피에조 부조를 활용하여 모드를 2개로 변경 가능하게 구현.
-
+  오실로스코프나, led 등을 활용하여 직간접적인 근력 시각자료를 추가하는 것도 고려.
+  
   조건 3 :
-
+  
 
   예상질문 1 :
   센서의 오류에 대응하는 방법
@@ -61,9 +58,9 @@
 
 /*
   추가 사항
-  1. 리모컨 배선 시. 대가리로 보이는 부분 꼽고, 왼쪽부터 13번핀 gnd 5v 순이다.
+  1. 리모컨 배선 시. 대가리로 보이는 부분 꼽고, 왼쪽부터 11번핀 gnd 5v 순이다.
   2. 피에조 부저는 + 부분이 9번핀 다른 부분이 gnd 연결.
-  3. 
+  3.
 */
 
 
@@ -73,28 +70,10 @@ int buzzerPin = 9;
 // 노래의 빠르기를 설정한다.
 int tempo = 200;
 
-// 적외선 수신부가 연결될 핀을 설정한다.
-int irPin = 11;
-
-// 적외선 수신보가 연결된 핀을 리모컨 수신 핀으로 설정한다.
-IRrecv irrecv(irPin);
-
-// 수신된 신호의 결과를 results 변수로 설정한다.
-decode_results;
-
-// 1번과 2번 버튼을 통해 모드를 각각 바꾼다. (밑은 예시 코드이며, 제대로 설정 후 재 기입)
-long mode1 = 0xFF6897;
-long mode2 = 0xFF6893;
 
 void setup() {
   Serial.begin(9600);
   pinMode(buzzerPin, OUTPUT);
-
-  // 적외선 리모컨 수신을 시작한다.
-  irrecv.enableIRIn();
-
-  // 13번 핀에 연결된 LED를 리모컨 수신시 점멸시킨다.
-  irrecv.blink13(true);
 }
 
 void loop() {
@@ -103,92 +82,28 @@ void loop() {
   int duration;
 
   duration = tempo;
-
-
-  /*
-    // 수신된 코드가 있을 때 실행한다.
-    if(irrecv.decode(&results)){
-      // 0xFFFFFFFF 값을 제외하고 출력한다.
-      if(results.value != 0xFFFFFFFF){
-        // 수신된 값을 16진수 형태로 출력한다.
-        Serial.print("Received Code is ");
-        Serial.println("results.value, HEX);
-      }
-      // 다음 수신을 위해서 준비한다.
-      irrecv.resume();
-    }
-  */
-
-  // 수신된 코드가 있을 때 실행한다.(위의 코드를 먼저 사용하여 리모컨 번호별 정보를 얻는다 필요한건 2개)
-  if (irrecv.decode(&results)) {
-    // 0xFFFFFFFF 값을 제외하고 출력한다.
-    if (results.value != 0xFFFFFFFF) {
-      if (results.value == mode1) {
-        int val1 = analogRead(A0);
-        Serial.print("균형모드 1센서의 값은 : ");
-        Serial.println(val1);
-        int val2 = analogRead(A1);
-        Serial.print("균형모드 2센서의 값은 : ");
-        Serial.println(val2);
-
-        if (val1 - val2 > 50 || val2 - val1 > 50) { // 50 이상 두 센서의 차이가 날 시 부저음 발생.
-
-          int val1 = analogRead(A0);
-          Serial.print("균형모드 1센서의 값은 : ");
-          Serial.println(val1);
-          int val2 = analogRead(A1);
-          Serial.print("균형모드 2센서의 값은 : ");
-          Serial.println(val2);
-
-          // tone 명령어를 통하여 부저 핀으로 사각파를 출력한다
-          tone(buzzerPin, 262, 50); // c
-          delay(100);
-        }
-
-      }
-      if (results.value == mode2) {
-        int val1 = analogRead(A0);
-        Serial.print("측정모드 1센서의 값은 : ");
-        Serial.println(val1);
-        int val2 = analogRead(A1);
-        Serial.print("측정모드 2센서의 값은 : ");
-        Serial.println(val2);
-
-        if (val1 - val2 > 50 || val2 - val1 > 50) { // 50 이상 두 센서의 차이가 날 시 부저음 발생.
-
-          int val1 = analogRead(A0);
-          Serial.print("측정모드 1센서의 값은 : ");
-          Serial.println(val1);
-          int val2 = analogRead(A1);
-          Serial.print("측정모드 2센서의 값은 : ");
-          Serial.println(val2);
-
-          // tone 명령어를 통하여 부저 핀으로 사각파를 출력한다
-          tone(buzzerPin, 349, 50); // g
-          delay(100);
-        }
-      }
-    }
-  }
-
-}
-/*int val1 = analogRead(A0);
-  Serial.print("균형모드 1센서의 값은 : ");
-  Serial.println(val1);
-  int val2 = analogRead(A1);
-  Serial.print("균형모드 2센서의 값은 : ");
-  Serial.println(val2);
+  
+  int val1 = analogRead(A0); // 센서 1
+  int val2 = analogRead(A1); // 센서 2
 
   if (val1 - val2 > 50 || val2 - val1 > 50) { // 50 이상 두 센서의 차이가 날 시 부저음 발생.
 
-  int val1 = analogRead(A0);
-  Serial.print("균형모드 1센서의 값은 : ");
-  Serial.println(val1);
-  int val2 = analogRead(A1);
-  Serial.print("균형모드 2센서의 값은 : ");
-  Serial.println(val2);
+    Serial.print("균형모드 1센서의 값은 : ");
+    Serial.println(val1);
+    Serial.print("균형모드 2센서의 값은 : ");
+    Serial.println(val2);
 
-  // tone 명령어를 통하여 부저 핀으로 사각파를 출력한다
-  tone(buzzerPin, 349, 50);
-  delay(100);
-  }*/
+    // tone 명령어를 통하여 부저 핀으로 사각파를 출력한다
+    tone(buzzerPin, 262, 50);
+  }
+
+  else {
+    int val1 = analogRead(A0);
+    Serial.print("균형모드 1센서의 값은 : ");
+    Serial.println(val1);
+    int val2 = analogRead(A1);
+    Serial.print("균형모드 2센서의 값은 : ");
+    Serial.println(val2);
+  }
+  
+}
