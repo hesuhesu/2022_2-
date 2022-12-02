@@ -142,7 +142,8 @@ for i in range(ab) :
     '''
 
 
-    bst = BinarySearchTree()
+    bst = BST()
+    
     for i in list2 :
         bst.insert(i)
     
