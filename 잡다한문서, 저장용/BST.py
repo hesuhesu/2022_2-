@@ -2,7 +2,6 @@ import os
 import sys
 
 
-
 path = (os.path.sep.join(sys.argv[0].split(os.path.sep)[:-1]))
 path2 = os.path.dirname(os.path.abspath(__file__))
 path3 = os.getcwd()
@@ -19,73 +18,121 @@ Test2 = open(a2, 'w', encoding = 'utf8')
 ab = int(Test1.readline())         # replacement_input.txt 파일에서 계산을 반복할 횟수를 불러옵니다(줄 갯수).
 
 
-class Node(object):
-    def __init__(self, data):
-        self.data = data
-        self.left = self.right = None
+keyval = {}
 
-class BinarySearchTree(object):
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
 
-    level = 0
-
-    def __init__(self):
-        self.root = None
-
-    def insert(self, data):
-        self.root = self._insert_value(self.root, data)
-        return self.root is not None
-
-    def _insert_value(self, node, data):
-        if node is None:
-            node = Node(data)
-        else:
-            if data <= node.data:
-                node.left = self._insert_value(node.left, data)
-            else:
-                node.right = self._insert_value(node.right, data)
-        return node
+class BST:
     
-    def find(self, key):
-        return self._find_value(self.root, key)
 
-    def _find_value(self, root, key):
-        if root is None or root.data == key:
-            return root is not None
-        elif key < root.data:
-            return self._find_value(root.left, key)
-        else:
-            return self._find_value(root.right, key)
+    def __init__(self, root):
+        self.root = root
+        
 
-    def delete(self, key):
-        self.root, deleted = self._delete_value(self.root, key)
-        return deleted
-
-    def _delete_value(self, node, key):
-        if node is None:
-            return node, False
-
-        deleted = False
-        if key == node.data:
-            deleted = True
-            if node.left and node.right:
-                # replace the node to the leftmost of node.right
-                parent, child = node, node.right
-                while child.left is not None:
-                    parent, child = child, child.left
-                child.left = node.left
-                if parent != node:
-                    parent.left = child.right
-                    child.right = node.right
-                node = child
-            elif node.left or node.right:
-                node = node.left or node.right
+    def insert(self, value):
+        answer = "R"
+        self.current_node = self.root
+        while True:
+            if value < self.current_node.value:
+                if self.current_node.left != None:
+                    self.current_node = self.current_node.left
+                    answer = answer + "0" ##
+                else:
+                    self.current_node.left = Node(value)
+                    answer = answer + "0" ##
+                    keyval[value] = answer ##
+                    answer = "R" ##
+                    break
             else:
-                node = None
-        elif key < node.data:
-            node.left, deleted = self._delete_value(node.left, key)
-        else:
-            node.right, deleted = self._delete_value(node.right, key)
-        return node, deleted
+                if self.current_node.right != None:
+                    self.current_node = self.current_node.right
+                    answer = answer + "1" ##
+                else:
+                    self.current_node.right = Node(value)
+                    answer = answer + "1" ## 
+                    keyval[value] = answer ##
+                    answer = "R" ##
+                    break
+    
+    def search(self, value):
+        self.current_node = self.root
+        while self.current_node:
+            if self.current_node.value == value:
+                return True
+            elif self.current_node.value > value:
+                self.current_node = self.current_node.left
+            else:
+                self.current_node = self.current_node.right
+        return False
+    
+    def delete(self, value):
+        # 삭제할 노드가 있는지 검사하고 없으면 False리턴
+        # 검사를 한 후에는 삭제할 노드가 current_node, 삭제할 노드의 부모 노드가 parent가 된다.
+        is_search = False
+        self.current_node = self.root
+        self.parent = self.root
+        while self.current_node:
+            if self.current_node.value == value:
+                is_search = True
+                break
+            elif value < self.current_node.value:
+                self.parent = self.current_node
+                self.current_node = self.current_node.left
+            else:
+                self.parent = self.current_node
+                self.current_node = self.current_node.right
+        if is_search == False:
+            return False
+		
+        # 삭제할 노드가 자식 노드를 갖고 있지 않을 때
+        if self.current_node.left == None and self.current_node.right == None:
+            if value < self.parent.value:
+                self.parent.left = None
+            else:
+                self.parent.right = None
+        
+        # 삭제할 노드가 자식 노드를 한 개 가지고 있을 때(왼쪽 자식 노드)
+        if self.current_node.left != None and self.current_node.right == None:
+            if value < self.parent.value:
+                self.parent.left = self.current_node.left
+            else:
+                self.parent.right = self.current_node.left
+        
+        # 삭제할 노드가 자식 노드를 한 개 가지고 있을 때(오른쪽 자식 노드)
+        if self.current_node.left == None and self.current_node.right != None:
+            if value < self.parent.value:
+                self.parent.left = self.current_node.right
+            else:
+                self.parent.right = self.current_node.right                
+
+        # 삭제할 노드가 자식 노드를 두 개 가지고 있을 때
+        if self.current_node.left != None and self.current_node.right != None:
+            self.change_node = self.current_node.right
+            self.change_node_parent = self.current_node.right
+            while self.change_node.left != None:
+                self.change_node_parent = self.change_node
+                self.change_node = self.change_node.left
+            if self.change_node.right != None:
+                self.change_node_parent.left = self.change_node.right
+            else:
+                self.change_node_parent.left = None
+                
+            if value < self.parent.value:
+                self.parent.left = self.change_node
+                self.change_node.right = self.current_node.right
+                self.change_node.left = self.current_node.left
+            else:
+                self.parent.right = self.change_node
+                self.change_node.left = self.current_node.left
+                self.change_node.right = self.current_node.right
+
+        return True
+
+
 
 listnum = 0
 Anum = 1 # 그냥 몇 번째 리스트인지 알려주는 정수형 변수입니다.
@@ -106,21 +153,28 @@ for i in range(ab) :
     '''
     여기에 대략적인 BST 구현
     '''
+
+
+    bst = BST(Node(10))
     
-    bst = BinarySearchTree()
-    for i in list2 :
-        bst.insert(i)
+    keyval[list2[0]] = "R"
+    for i in range(1,len(list2)) :
+        bst.insert(list2[i])
     
-    bst
+    print(keyval)
 
     list3 = int(Test1.readline()) # 검색할 키의 개수 1차
     print("----------------------------------------------")
     print("1. 1차 검색 개수는 {}개입니다(output에 저장됨)".format(list3))
 
+
+
     list4 = Test1.readline()
     list4 = list4.split()
     list4 = list(map(int, list4)) # 검색할 키가 순서대로 스페이스로 구분되어 표기
     print("1차 검색할 키의 요소 리스트 : {}".format(list4))
+
+    
 
 
     list5 = int(Test1.readline()) # 삭제할 키의 개수
