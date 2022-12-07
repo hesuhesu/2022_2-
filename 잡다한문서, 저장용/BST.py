@@ -174,7 +174,10 @@ for i in range(ab) :
     list4 = list(map(int, list4)) # 검색할 키가 순서대로 스페이스로 구분되어 표기
     print("1차 검색할 키의 요소 리스트 : {}".format(list4))
 
-    
+
+    for i in range(len(list4)) :
+        Test2.write(keyval[list4[i]])
+        Test2.write("\n")
 
 
     list5 = int(Test1.readline()) # 삭제할 키의 개수
@@ -195,18 +198,11 @@ for i in range(ab) :
     list8 = list8.split()
     list8 = list(map(int, list8)) # 검색할 키가 순서대로 스페이스로 구부되어 표기
     print("2차 검색할 키의 요소 리스트 : {}".format(list8))
-       
-            
 
-    # 중요 컨텐츠를 문자열로 변경
-    # 예시 File_content = list(map(str, File_content))
 
-    # 예시 FW = str(FW)        
-        
-    # 파일 쓰기 부분.
-    
-        
-
+    for i in range(len(list8)) :
+        Test2.write(keyval[list8[i]])
+        Test2.write("\n")     
         
 
 Test1.close()
