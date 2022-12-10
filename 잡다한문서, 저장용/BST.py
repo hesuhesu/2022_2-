@@ -155,29 +155,29 @@ for i in range(ab) :
     '''
 
 
-    bst = BST(Node(10))
+    bst1 = BST(Node(10))
     
     keyval[list2[0]] = "R"
     for i in range(1,len(list2)) :
-        bst.insert(list2[i])
+        bst1.insert(list2[i])
     
     print(keyval)
+
+
 
     list3 = int(Test1.readline()) # 검색할 키의 개수 1차
     print("----------------------------------------------")
     print("1. 1차 검색 개수는 {}개입니다(output에 저장됨)".format(list3))
-
-
 
     list4 = Test1.readline()
     list4 = list4.split()
     list4 = list(map(int, list4)) # 검색할 키가 순서대로 스페이스로 구분되어 표기
     print("1차 검색할 키의 요소 리스트 : {}".format(list4))
 
-
+    
     for i in range(len(list4)) :
-        Test2.write(keyval[list4[i]])
-        Test2.write("\n")
+            Test2.write(keyval[list4[i]])
+            Test2.write("\n")
 
 
     list5 = int(Test1.readline()) # 삭제할 키의 개수
@@ -189,7 +189,6 @@ for i in range(ab) :
     list6 = list(map(int, list6)) # 삭제할 키가 순서대로 스페이스로 구분되어 표기
     print("삭제할 키의 요소 리스트 : {}".format(list6))
 
-
     list7 = int(Test1.readline()) # 검색할 키의 개수 2차
     print("----------------------------------------------")
     print("3. 2차 검색 개수는 {}개입니다(output에 저장됨)".format(list3))
@@ -199,11 +198,25 @@ for i in range(ab) :
     list8 = list(map(int, list8)) # 검색할 키가 순서대로 스페이스로 구부되어 표기
     print("2차 검색할 키의 요소 리스트 : {}".format(list8))
 
+    keyval = {}
+    
+    for i in range(len(list6)) :
+        list2.remove(list6[i])
+    
+
+    bst2 = BST(Node(10))
+
+    keyval[list2[0]] = "R"
+    for i in range(1,len(list2)) :
+        bst2.insert(list2[i])
+    
+    print(keyval)
+
 
     for i in range(len(list8)) :
-        Test2.write(keyval[list8[i]])
-        Test2.write("\n")     
-        
+            Test2.write(keyval[list8[i]])
+            Test2.write("\n")
+       
 
 Test1.close()
 Test2.close() # 마무리 파일 입력 후 닫기.
