@@ -1,0 +1,143 @@
+import os
+import sys
+
+
+path = (os.path.sep.join(sys.argv[0].split(os.path.sep)[:-1]))
+path2 = os.path.dirname(os.path.abspath(__file__))
+path3 = os.getcwd()
+
+print(path)
+print(path3)
+
+a1 = '{}\\bst_input.txt'.format(path)  # 추가로 파일 이름까지 입력하면 준비 완료입니다.
+a2 = '{}\\bst_output.txt'.format(path)
+
+Test1 = open(a1, 'r', encoding = 'utf8')
+Test2 = open(a2, 'w', encoding = 'utf8')
+
+ab = int(Test1.readline())         # bst_input.txt 파일에서 계산을 반복할 횟수를 불러옵니다(줄 갯수).
+
+
+keyval = {} # 파일을 가둘 딕셔너리
+
+class Node:
+
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+class BST:
+    
+    def __init__(self, root):
+        self.root = root
+        
+
+    def insert(self, value):
+        answer = "R"
+        self.current_node = self.root
+        while True:
+            if value < self.current_node.value:
+                if self.current_node.left != None:
+                    self.current_node = self.current_node.left
+                    answer = answer + "0" 
+                else:
+                    self.current_node.left = Node(value)
+                    answer = answer + "0" 
+                    keyval[value] = answer 
+                    answer = "R" 
+                    break
+            else:
+                if self.current_node.right != None:
+                    self.current_node = self.current_node.right
+                    answer = answer + "1"
+                else:
+                    self.current_node.right = Node(value)
+                    answer = answer + "1" 
+                    keyval[value] = answer 
+                    answer = "R" 
+                    break
+
+
+listnum = 0
+Anum = 1 # 그냥 몇 번째 리스트인지 알려주는 정수형 변수입니다.
+for i in range(ab) :
+
+    print("################################################################################################")
+    list1 = int(Test1.readline())
+    print("\n----------------------------------------------")
+    print("<{}번째> 이진트리 최초 갯수는 {}입니다.".format(Anum,list1))
+    Anum += 1
+    
+    list2 = Test1.readline() # insert 전체 삽입
+    list2 = list2.split()
+    list2 = list(map(int, list2)) # 리스트 정수형으로 변환하여 인수들의 비교가 쉽게 합니다.
+    print("최초 모든 요소의 리스트 : {}".format(list2))
+
+
+    # 주요 파트.
+
+
+    bst1 = BST(Node(10))
+    
+    keyval[list2[0]] = "R"
+    for i in range(1,len(list2)) :
+        bst1.insert(list2[i])
+    
+    print(keyval)
+
+
+    list3 = int(Test1.readline()) # 검색할 키의 개수 1차
+    print("----------------------------------------------")
+    print("1. 1차 검색 개수는 {}개입니다(output에 저장됨)".format(list3))
+
+    list4 = Test1.readline()
+    list4 = list4.split()
+    list4 = list(map(int, list4)) # 검색할 키가 순서대로 스페이스로 구분되어 표기
+    print("1차 검색할 키의 요소 리스트 : {}".format(list4))
+
+    
+    for i in range(len(list4)) :
+            Test2.write(keyval[list4[i]])
+            Test2.write("\n")
+
+
+    list5 = int(Test1.readline()) # 삭제할 키의 개수
+    print("----------------------------------------------")
+    print("2. 삭제할 갯수는 {}개입니다.".format(list5))
+
+    list6 = Test1.readline()
+    list6 = list6.split()
+    list6 = list(map(int, list6)) # 삭제할 키가 순서대로 스페이스로 구분되어 표기
+    print("삭제할 키의 요소 리스트 : {}".format(list6))
+
+    list7 = int(Test1.readline()) # 검색할 키의 개수 2차
+    print("----------------------------------------------")
+    print("3. 2차 검색 개수는 {}개입니다(output에 저장됨)".format(list3))
+
+    list8 = Test1.readline()
+    list8 = list8.split()
+    list8 = list(map(int, list8)) # 검색할 키가 순서대로 스페이스로 구부되어 표기
+    print("2차 검색할 키의 요소 리스트 : {}".format(list8))
+
+    keyval = {}
+    
+    for i in range(len(list6)) :
+        list2.remove(list6[i])
+    
+
+    bst2 = BST(Node(10))
+
+    keyval[list2[0]] = "R"
+    for i in range(1,len(list2)) :
+        bst2.insert(list2[i])
+    
+    print(keyval)
+
+
+    for i in range(len(list8)) :
+            Test2.write(keyval[list8[i]])
+            Test2.write("\n")
+
+Test1.close()
+Test2.close() # 마무리 파일 입력 후 닫기.
