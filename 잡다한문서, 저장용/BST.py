@@ -149,11 +149,6 @@ for i in range(ab) :
     list2 = list(map(int, list2)) # 리스트 정수형으로 변환하여 인수들의 비교가 쉽게 합니다.
     print("최초 모든 요소의 리스트 : {}".format(list2))
 
-    
-    '''
-    여기에 대략적인 BST 구현
-    '''
-
 
     bst1 = BST(Node(10))
     
@@ -162,7 +157,6 @@ for i in range(ab) :
         bst1.insert(list2[i])
     
     print(keyval)
-
 
 
     list3 = int(Test1.readline()) # 검색할 키의 개수 1차
@@ -198,12 +192,12 @@ for i in range(ab) :
     list8 = list(map(int, list8)) # 검색할 키가 순서대로 스페이스로 구부되어 표기
     print("2차 검색할 키의 요소 리스트 : {}".format(list8))
 
+	
     keyval = {}
     
     for i in range(len(list6)) :
         list2.remove(list6[i])
     
-
     bst2 = BST(Node(10))
 
     keyval[list2[0]] = "R"
@@ -212,7 +206,6 @@ for i in range(ab) :
     
     print(keyval)
 
-
     for i in range(len(list8)) :
             Test2.write(keyval[list8[i]])
             Test2.write("\n")
@@ -220,5 +213,3 @@ for i in range(ab) :
 
 Test1.close()
 Test2.close() # 마무리 파일 입력 후 닫기.
-
-# pyinstaller --onefile [파일명].py
