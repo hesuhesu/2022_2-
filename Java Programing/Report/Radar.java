@@ -18,12 +18,44 @@
 
 package first;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 class Radar extends JFrame {
-
+	
+	int[] arr;
+	
+	class MyListener_plus implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			int x=(int)(Math.random()*1500)+1;
+		    	int y=(int)(Math.random()*1000)+1;
+		    	int w= 100;
+		    	int h= 100;
+			
+		    	Random rand = new Random();
+			float r = rand.nextFloat();
+			float g = rand.nextFloat();
+			float b = rand.nextFloat();
+		    
+			Color randomColor = new Color(r, g, b);
+			
+			Graphics g1 = getGraphics();
+			g1.setColor(randomColor);
+			g1.fillOval(x, y, w, h);
+		}
+	}
+	class MyListener_delete implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			
+		}
+	}
 	public Radar() {
 		
 		setSize(500,500);
@@ -34,13 +66,14 @@ class Radar extends JFrame {
 		JButton btn1 = new JButton("추가");
 		JButton btn2 = new JButton("삭제");
 		JPanel panel = new JPanel();
-
+		
+		btn1.addActionListener(new MyListener_plus());
+		btn2.addActionListener(new MyListener_delete());
+		
 		panel.add(btn1);
 		panel.add(btn2);
 		add(panel);
-
 	}
-
 	public static void main(String args[]) {
 		Radar R = new Radar();
 	}
