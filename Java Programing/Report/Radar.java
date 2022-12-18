@@ -93,30 +93,26 @@ class Radar extends JFrame {
 					
 					if (list_x.get(t) < list_x.get(i)) {
 						if (list_y.get(t) < list_y.get(i)) {
-							gpnew.fillOval(list_x.get(t)+((list_x.get(i) - list_x.get(t))/100), list_y.get(t)+((list_y.get(i) - list_y.get(t))/100),w-180, h-180);
+							
+							gpnew.fillOval(list_x.get(t)+95+((list_x.get(i) - list_x.get(t))/20), list_y.get(t)+95+((list_y.get(i) - list_y.get(t))/20), w-190, h-190);
 							t++;
 						}
 						else {
-							gpnew.fillOval(list_x.get(t)+((list_x.get(i) - list_x.get(t))/100), list_y.get(t)+((list_y.get(t) - list_y.get(i))/100),w-180, h-180);
+							gpnew.fillOval(list_x.get(t)+95+((list_x.get(i) - list_x.get(t))/20), list_y.get(t)+95-((list_y.get(t) - list_y.get(i))/20), w-190, h-190);
 							t++;
 						}
-						
 					}
-					else {
+					else if (list_x.get(t) >= list_x.get(i)){
 						if (list_y.get(t) < list_y.get(i)) {
-							gpnew.fillOval(list_x.get(t)+((list_x.get(t) - list_x.get(i))/100), list_y.get(t)+((list_y.get(i) - list_y.get(t))/100),w-180, h-180);
+							gpnew.fillOval(list_x.get(t)+95-((list_x.get(t) - list_x.get(i))/20), list_y.get(t)+95+((list_y.get(i) - list_y.get(t))/20), w-190, h-190);
 							t++;
 						}
 						else {
-							gpnew.fillOval(list_x.get(t)+((list_x.get(t) - list_x.get(i))/100), list_y.get(t)+((list_y.get(t) - list_y.get(i))/100),w-180, h-180);
+							gpnew.fillOval(list_x.get(t)+95-((list_x.get(t) - list_x.get(i))/20), list_y.get(t)+95-((list_y.get(t) - list_y.get(i))/20), w-190, h-190);
 							t++;
 						}
 					}
 				}
-				
-				
-				gpnew.setColor(new Color(list_r.get(i-1),list_g.get(i-1),list_b.get(i-1)));
-				gpnew.fillOval(list_x.get(i)-list_x.get(i-1), list_y.get(i)-list_y.get(i-1),w-180, h-180);
 			}
 		}
 	}
