@@ -22,6 +22,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.JButton;
@@ -30,32 +32,80 @@ import javax.swing.JPanel;
 
 class Radar extends JFrame {
 	
-	int[] arr;
+	JButton btn1 = new JButton("추가");
+	JButton btn2 = new JButton("삭제");
+	JPanel panel = new JPanel();
+	
+	List<Integer> list_x = new ArrayList<>();
+	List<Integer> list_y = new ArrayList<>();
+	List<Integer> list_r = new ArrayList<>();
+	List<Integer> list_g = new ArrayList<>();
+	List<Integer> list_b = new ArrayList<>();
 	
 	class MyListener_plus implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			
 			int x=(int)(Math.random()*1500)+1;
-		    	int y=(int)(Math.random()*1000)+1;
-		    	int w= 100;
-		    	int h= 100;
+		    int y=(int)(Math.random()*1000)+1;
+		    int w= 200;
+		    int h= 200;
 			
-		    	Random rand = new Random();
-			float r = rand.nextFloat();
-			float g = rand.nextFloat();
-			float b = rand.nextFloat();
+		    Random rand = new Random();
 		    
-			Color randomColor = new Color(r, g, b);
+			int r1 = rand.nextInt();
+			int g1 = rand.nextInt();
+			int b1 = rand.nextInt();
 			
-			Graphics g1 = getGraphics();
-			g1.setColor(randomColor);
-			g1.fillOval(x, y, w, h);
+			int r2 = rand.nextInt();
+			int g2 = rand.nextInt();
+			int b2 = rand.nextInt();
+			
+			int r3 = rand.nextInt();
+			int g3 = rand.nextInt();
+			int b3 = rand.nextInt();
+		    
+			Color randomColor1 = new Color(r1, g1, b1);
+			Color randomColor2 = new Color(r2, g2, b2);
+			Color randomColor3 = new Color(r3, g3, b3);
+			
+			while (true) {
+				x=(int)(Math.random()*1500)+1;
+				y=(int)(Math.random()*1000)+1;
+				if (((x <= 1400) & (x>=100)) & ((y <= 700) & (y>=100))) break;
+			}
+			
+			list_x.add(x);
+			list_y.add(y);
+			
+			list_r.add(r1);
+			list_g.add(g1);
+			list_b.add(b1);
+			
+			Graphics gp1 = getGraphics();
+			Graphics gp2 = getGraphics();
+			Graphics gp3 = getGraphics();
+			Graphics gp_mid = getGraphics();
+			
+			gp1.setColor(randomColor1);
+			gp1.fillOval(x, y, w, h);
+			
+			gp2.setColor(randomColor2);
+			gp2.fillOval(x+20, y+20,w-150, h-150);
+			
+			gp3.setColor(randomColor3);
+			gp3.fillOval(x+120, y+120,w-150, h-150);
+			
+			gp_mid.setColor(new Color(0,0,0));
+			gp_mid.fillOval(x+95, y+95,w-190, h-190);
 		}
 	}
 	class MyListener_delete implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			
+			panel.revalidate();
+			panel.repaint();
 		}
 	}
+	
 	public Radar() {
 		
 		setSize(500,500);
@@ -63,9 +113,7 @@ class Radar extends JFrame {
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JButton btn1 = new JButton("추가");
-		JButton btn2 = new JButton("삭제");
-		JPanel panel = new JPanel();
+		
 		
 		btn1.addActionListener(new MyListener_plus());
 		btn2.addActionListener(new MyListener_delete());
