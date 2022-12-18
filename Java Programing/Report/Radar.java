@@ -38,9 +38,9 @@ class Radar extends JFrame {
 	
 	List<Integer> list_x = new ArrayList<>();
 	List<Integer> list_y = new ArrayList<>();
-	List<Integer> list_r = new ArrayList<>();
-	List<Integer> list_g = new ArrayList<>();
-	List<Integer> list_b = new ArrayList<>();
+	List<Float> list_r = new ArrayList<>();
+	List<Float> list_g = new ArrayList<>();
+	List<Float> list_b = new ArrayList<>();
 	
 	class MyListener_plus implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
@@ -52,21 +52,15 @@ class Radar extends JFrame {
 			
 		    Random rand = new Random();
 		    
-			int r1 = rand.nextInt();
-			int g1 = rand.nextInt();
-			int b1 = rand.nextInt();
-			
-			int r2 = rand.nextInt();
-			int g2 = rand.nextInt();
-			int b2 = rand.nextInt();
-			
-			int r3 = rand.nextInt();
-			int g3 = rand.nextInt();
-			int b3 = rand.nextInt();
+			float r1 = rand.nextFloat();
+			float g1 = rand.nextFloat();
+			float b1 = rand.nextFloat();
 		    
 			Color randomColor1 = new Color(r1, g1, b1);
-			Color randomColor2 = new Color(r2, g2, b2);
-			Color randomColor3 = new Color(r3, g3, b3);
+			
+			list_r.add(r1);
+			list_g.add(g1);
+			list_b.add(b1);
 			
 			while (true) {
 				x=(int)(Math.random()*1500)+1;
@@ -77,32 +71,65 @@ class Radar extends JFrame {
 			list_x.add(x);
 			list_y.add(y);
 			
-			list_r.add(r1);
-			list_g.add(g1);
-			list_b.add(b1);
-			
 			Graphics gp1 = getGraphics();
-			Graphics gp2 = getGraphics();
-			Graphics gp3 = getGraphics();
 			Graphics gp_mid = getGraphics();
 			
 			gp1.setColor(randomColor1);
 			gp1.fillOval(x, y, w, h);
 			
-			gp2.setColor(randomColor2);
-			gp2.fillOval(x+20, y+20,w-150, h-150);
-			
-			gp3.setColor(randomColor3);
-			gp3.fillOval(x+120, y+120,w-150, h-150);
-			
 			gp_mid.setColor(new Color(0,0,0));
 			gp_mid.fillOval(x+95, y+95,w-190, h-190);
+			
+			
+			for (int i = 0; i < list_x.size(); i++) {
+				Graphics gpnew = getGraphics();
+				if (i==0) {
+					continue;
+				}
+				
+				int t = 0;
+				gpnew.setColor(new Color(list_r.get(i),list_g.get(i),list_b.get(i)));
+				while(t<i) {
+					
+					if (list_x.get(t) < list_x.get(i)) {
+						if (list_y.get(t) < list_y.get(i)) {
+							gpnew.fillOval(list_x.get(t)+((list_x.get(i) - list_x.get(t))/100), list_y.get(t)+((list_y.get(i) - list_y.get(t))/100),w-180, h-180);
+							t++;
+						}
+						else {
+							gpnew.fillOval(list_x.get(t)+((list_x.get(i) - list_x.get(t))/100), list_y.get(t)+((list_y.get(t) - list_y.get(i))/100),w-180, h-180);
+							t++;
+						}
+						
+					}
+					else {
+						if (list_y.get(t) < list_y.get(i)) {
+							gpnew.fillOval(list_x.get(t)+((list_x.get(t) - list_x.get(i))/100), list_y.get(t)+((list_y.get(i) - list_y.get(t))/100),w-180, h-180);
+							t++;
+						}
+						else {
+							gpnew.fillOval(list_x.get(t)+((list_x.get(t) - list_x.get(i))/100), list_y.get(t)+((list_y.get(t) - list_y.get(i))/100),w-180, h-180);
+							t++;
+						}
+					}
+				}
+				
+				
+				gpnew.setColor(new Color(list_r.get(i-1),list_g.get(i-1),list_b.get(i-1)));
+				gpnew.fillOval(list_x.get(i)-list_x.get(i-1), list_y.get(i)-list_y.get(i-1),w-180, h-180);
+			}
 		}
 	}
+	
 	class MyListener_delete implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			panel.revalidate();
 			panel.repaint();
+			list_x = new ArrayList<>();
+			list_y = new ArrayList<>();
+			list_r = new ArrayList<>();
+			list_g = new ArrayList<>();
+			list_b = new ArrayList<>();
 		}
 	}
 	
