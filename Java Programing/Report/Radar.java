@@ -73,11 +73,12 @@ class Radar extends JFrame {
 
 			Graphics gp1 = getGraphics();
 			Graphics gp_mid = getGraphics();
-			Graphics gp_md = getGraphics();
+			
 			Graphics gpwhite = getGraphics();
 			Graphics gpblack = getGraphics();
 			
-			gp_md.setColor(new Color(0, 0, 0));
+			
+			gp_mid.setColor(black);
 			gpwhite.setColor(white);
 			gpblack.setColor(new Color(0,0,0));
 			
@@ -85,16 +86,18 @@ class Radar extends JFrame {
 			gp1.fillOval(x, y, w, h);
 			gpblack.drawOval(x, y, w, h);
 
-			gp_mid.setColor(black);
-			gp_mid.fillOval(x + 95, y + 95, w - 190, h - 190);
-			gpwhite.drawOval(x + 95, y + 95, w - 190, h - 190);
+			
+			gp_mid.fillOval(x + 95, y + 95, w - 195, h - 195);
+			gpwhite.drawOval(x + 95, y + 95, w - 195, h - 195);
 			
 			for (int i = 0; i < list_x.size(); i++) {
 				Graphics gpnew = getGraphics();
+				
+				int t = 0;
+				
 				if (i == 0) {
 					continue;
 				}
-				int t = 0;
 				
 				gpnew.setColor(new Color(list_r.get(i), list_g.get(i), list_b.get(i)));
 				while (t < i) {
@@ -102,28 +105,28 @@ class Radar extends JFrame {
 						if (list_y.get(t) < list_y.get(i)) {
 							gpnew.fillOval(list_x.get(t) + 95 + ((list_x.get(i) - list_x.get(t)) / 15), list_y.get(t) + 95 + ((list_y.get(i) - list_y.get(t)) / 15), w - 190, h - 190);
 							gpwhite.drawOval(list_x.get(t) + 95 + ((list_x.get(i) - list_x.get(t)) / 15), list_y.get(t) + 95 + ((list_y.get(i) - list_y.get(t)) / 15), w - 190, h - 190);
-							gp_md.fillOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 190, h - 190);
-							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 190, h - 190);
+							gp_mid.fillOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 195, h - 195);
+							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 195, h - 195);
 							t++;
 						} else {
 							gpnew.fillOval(list_x.get(t) + 95 + ((list_x.get(i) - list_x.get(t)) / 15), list_y.get(t) + 95 - ((list_y.get(t) - list_y.get(i)) / 15), w - 190, h - 190);
 							gpwhite.drawOval(list_x.get(t) + 95 + ((list_x.get(i) - list_x.get(t)) / 15), list_y.get(t) + 95 - ((list_y.get(t) - list_y.get(i)) / 15), w - 190, h - 190);
-							gp_md.fillOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 190, h - 190);
-							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 190, h - 190);
+							gp_mid.fillOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 195, h - 195);
+							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 195, h - 195);
 							t++;
 						}
 					} else if (list_x.get(t) >= list_x.get(i)) {
 						if (list_y.get(t) < list_y.get(i)) {
 							gpnew.fillOval(list_x.get(t) + 95 - ((list_x.get(t) - list_x.get(i)) / 15), list_y.get(t) + 95 + ((list_y.get(i) - list_y.get(t)) / 15), w - 190, h - 190);
 							gpwhite.drawOval(list_x.get(t) + 95 - ((list_x.get(t) - list_x.get(i)) / 15), list_y.get(t) + 95 + ((list_y.get(i) - list_y.get(t)) / 15), w - 190, h - 190);
-							gp_md.fillOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 190, h - 190);
-							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 190, h - 190);
+							gp_mid.fillOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 195, h - 195);
+							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 195, h - 195);
 							t++;
 						} else {
 							gpnew.fillOval(list_x.get(t) + 95 - ((list_x.get(t) - list_x.get(i)) / 15), list_y.get(t) + 95 - ((list_y.get(t) - list_y.get(i)) / 15), w - 190, h - 190);
 							gpwhite.drawOval(list_x.get(t) + 95 - ((list_x.get(t) - list_x.get(i)) / 15), list_y.get(t) + 95 - ((list_y.get(t) - list_y.get(i)) / 15), w - 190, h - 190);
-							gp_md.fillOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 190, h - 190);
-							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 190, h - 190);
+							gp_mid.fillOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 195, h - 195);
+							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 195, h - 195);
 							t++;
 						}
 					}
@@ -131,39 +134,42 @@ class Radar extends JFrame {
 			}
 			for (int j = list_x.size() - 1; j >= 0; j--) {
 				Graphics gpnew = getGraphics();
+				
+				int t = list_x.size()-1;
+				
 				if (j == list_x.size() - 1) {
 					continue;
 				}
-				int t = list_x.size()-1;
 				
-				while (t > -1) {
-					gpnew.setColor(new Color(list_r.get(j), list_g.get(j), list_b.get(j)));
+				gpnew.setColor(new Color(list_r.get(j), list_g.get(j), list_b.get(j)));
+				
+				while (t > j) {
 					if (list_x.get(t) < list_x.get(j)) {
 						if (list_y.get(t) < list_y.get(j)) {
 							gpnew.fillOval(list_x.get(t) + 95 + ((list_x.get(j) - list_x.get(t)) / 15), list_y.get(t) + 95 + ((list_y.get(j) - list_y.get(t)) / 15), w - 190, h - 190);
 							gpwhite.drawOval(list_x.get(t) + 95 + ((list_x.get(j) - list_x.get(t)) / 15), list_y.get(t) + 95 + ((list_y.get(j) - list_y.get(t)) / 15), w - 190, h - 190);
-							gp_md.fillOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 190, h - 190);
-							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 190, h - 190);
+							gp_mid.fillOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 195, h - 195);
+							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 195, h - 195);
 							t--;
 						} else {
 							gpnew.fillOval(list_x.get(t) + 95 + ((list_x.get(j) - list_x.get(t)) / 15), list_y.get(t) + 95 - ((list_y.get(t) - list_y.get(j)) / 15), w - 190, h - 190);
 							gpwhite.drawOval(list_x.get(t) + 95 + ((list_x.get(j) - list_x.get(t)) / 15), list_y.get(t) + 95 - ((list_y.get(t) - list_y.get(j)) / 15), w - 190, h - 190);
-							gp_md.fillOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 190, h - 190);
-							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 190, h - 190);
+							gp_mid.fillOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 195, h - 195);
+							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 195, h - 195);
 							t--;
 						}
 					} else if (list_x.get(t) >= list_x.get(j)) {
 						if (list_y.get(t) < list_y.get(j)) {
 							gpnew.fillOval(list_x.get(t) + 95 - ((list_x.get(t) - list_x.get(j)) / 15), list_y.get(t) + 95 + ((list_y.get(j) - list_y.get(t)) / 15), w - 190, h - 190);
 							gpwhite.drawOval(list_x.get(t) + 95 - ((list_x.get(t) - list_x.get(j)) / 15), list_y.get(t) + 95 + ((list_y.get(j) - list_y.get(t)) / 15), w - 190, h - 190);
-							gp_md.fillOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 190, h - 190);
-							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 190, h - 190);
+							gp_mid.fillOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 195, h - 195);
+							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 195, h - 195);
 							t--;
 						} else {
 							gpnew.fillOval(list_x.get(t) + 95 - ((list_x.get(t) - list_x.get(j)) / 15), list_y.get(t) + 95 - ((list_y.get(t) - list_y.get(j)) / 15), w - 190, h - 190);
 							gpwhite.drawOval(list_x.get(t) + 95 - ((list_x.get(t) - list_x.get(j)) / 15), list_y.get(t) + 95 - ((list_y.get(t) - list_y.get(j)) / 15), w - 190, h - 190);
-							gp_md.fillOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 190, h - 190);
-							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 190, h - 190);
+							gp_mid.fillOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 195, h - 195);
+							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95 , w - 195, h - 195);
 							t--;
 						}
 					}
