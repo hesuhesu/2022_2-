@@ -31,92 +31,123 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 class Radar extends JFrame {
-	
+
 	JButton btn1 = new JButton("추가");
 	JButton btn2 = new JButton("삭제");
 	JPanel panel = new JPanel();
-	
+
 	List<Integer> list_x = new ArrayList<>();
 	List<Integer> list_y = new ArrayList<>();
 	List<Float> list_r = new ArrayList<>();
 	List<Float> list_g = new ArrayList<>();
 	List<Float> list_b = new ArrayList<>();
-	
+
 	class MyListener_plus implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			
-			int x=(int)(Math.random()*1500)+1;
-		    int y=(int)(Math.random()*1000)+1;
-		    int w= 200;
-		    int h= 200;
-			
-		    Random rand = new Random();
-		    
+
+			int x = (int) (Math.random() * 1500) + 1;
+			int y = (int) (Math.random() * 1000) + 1;
+			int w = 200;
+			int h = 200;
+
+			Random rand = new Random();
+
 			float r1 = rand.nextFloat();
 			float g1 = rand.nextFloat();
 			float b1 = rand.nextFloat();
-		    
+
 			Color randomColor1 = new Color(r1, g1, b1);
-			
+
 			list_r.add(r1);
 			list_g.add(g1);
 			list_b.add(b1);
-			
+
 			while (true) {
-				x=(int)(Math.random()*1500)+1;
-				y=(int)(Math.random()*1000)+1;
-				if (((x <= 1400) & (x>=100)) & ((y <= 700) & (y>=100))) break;
+				x = (int) (Math.random() * 1500) + 1;
+				y = (int) (Math.random() * 1000) + 1;
+				if (((x <= 1400) & (x >= 100)) & ((y <= 700) & (y >= 100)))
+					break;
 			}
-			
+
 			list_x.add(x);
 			list_y.add(y);
-			
+
 			Graphics gp1 = getGraphics();
 			Graphics gp_mid = getGraphics();
-			
+
 			gp1.setColor(randomColor1);
 			gp1.fillOval(x, y, w, h);
-			
-			gp_mid.setColor(new Color(0,0,0));
-			gp_mid.fillOval(x+95, y+95,w-190, h-190);
-			
-			
+
+			gp_mid.setColor(new Color(0, 0, 0));
+			gp_mid.fillOval(x + 95, y + 95, w - 190, h - 190);
+
 			for (int i = 0; i < list_x.size(); i++) {
 				Graphics gpnew = getGraphics();
-				if (i==0) {
+				if (i == 0) {
 					continue;
 				}
-				
+
 				int t = 0;
-				gpnew.setColor(new Color(list_r.get(i),list_g.get(i),list_b.get(i)));
-				while(t<i) {
-					
+				gpnew.setColor(new Color(list_r.get(i), list_g.get(i), list_b.get(i)));
+				while (t < i) {
+
 					if (list_x.get(t) < list_x.get(i)) {
 						if (list_y.get(t) < list_y.get(i)) {
-							
-							gpnew.fillOval(list_x.get(t)+95+((list_x.get(i) - list_x.get(t))/20), list_y.get(t)+95+((list_y.get(i) - list_y.get(t))/20), w-190, h-190);
+							gpnew.fillOval(list_x.get(t) + 95 + ((list_x.get(i) - list_x.get(t)) / 20),
+									list_y.get(t) + 95 + ((list_y.get(i) - list_y.get(t)) / 20), w - 190, h - 190);
+							t++;
+						} else {
+							gpnew.fillOval(list_x.get(t) + 95 + ((list_x.get(i) - list_x.get(t)) / 20),
+									list_y.get(t) + 95 - ((list_y.get(t) - list_y.get(i)) / 20), w - 190, h - 190);
 							t++;
 						}
-						else {
-							gpnew.fillOval(list_x.get(t)+95+((list_x.get(i) - list_x.get(t))/20), list_y.get(t)+95-((list_y.get(t) - list_y.get(i))/20), w-190, h-190);
-							t++;
-						}
-					}
-					else if (list_x.get(t) >= list_x.get(i)){
+					} else if (list_x.get(t) >= list_x.get(i)) {
 						if (list_y.get(t) < list_y.get(i)) {
-							gpnew.fillOval(list_x.get(t)+95-((list_x.get(t) - list_x.get(i))/20), list_y.get(t)+95+((list_y.get(i) - list_y.get(t))/20), w-190, h-190);
+							gpnew.fillOval(list_x.get(t) + 95 - ((list_x.get(t) - list_x.get(i)) / 20),
+									list_y.get(t) + 95 + ((list_y.get(i) - list_y.get(t)) / 20), w - 190, h - 190);
 							t++;
-						}
-						else {
-							gpnew.fillOval(list_x.get(t)+95-((list_x.get(t) - list_x.get(i))/20), list_y.get(t)+95-((list_y.get(t) - list_y.get(i))/20), w-190, h-190);
+						} else {
+							gpnew.fillOval(list_x.get(t) + 95 - ((list_x.get(t) - list_x.get(i)) / 20),
+									list_y.get(t) + 95 - ((list_y.get(t) - list_y.get(i)) / 20), w - 190, h - 190);
 							t++;
 						}
 					}
 				}
+			}
+
+			for (int j = list_x.size() - 1; j >= 0; j--) {
+				Graphics gpnew = getGraphics();
+				if (j == list_x.size() - 1) {
+					continue;
+				}
+				int t = list_x.size()-1;
+				
+				while (t > -1) {
+					
+					gpnew.setColor(new Color(list_r.get(j), list_g.get(j), list_b.get(j)));
+					if (list_x.get(t) < list_x.get(j)) {
+						if (list_y.get(t) < list_y.get(j)) {
+							gpnew.fillOval(list_x.get(t) + 95 + ((list_x.get(j) - list_x.get(t)) / 20), list_y.get(t) + 95 + ((list_y.get(j) - list_y.get(t)) / 20), w - 190, h - 190);
+							t--;
+						} else {
+							gpnew.fillOval(list_x.get(t) + 95 + ((list_x.get(j) - list_x.get(t)) / 20), list_y.get(t) + 95 - ((list_y.get(t) - list_y.get(j)) / 20), w - 190, h - 190);
+							t--;
+						}
+					} else if (list_x.get(t) >= list_x.get(j)) {
+						if (list_y.get(t) < list_y.get(j)) {
+							gpnew.fillOval(list_x.get(t) + 95 - ((list_x.get(t) - list_x.get(j)) / 20), list_y.get(t) + 95 + ((list_y.get(j) - list_y.get(t)) / 20), w - 190, h - 190);
+							t--;
+						} else {
+							gpnew.fillOval(list_x.get(t) + 95 - ((list_x.get(t) - list_x.get(j)) / 20), list_y.get(t) + 95 - ((list_y.get(t) - list_y.get(j)) / 20), w - 190, h - 190);
+							t--;
+						}
+					}
+				}
+
 			}
 		}
 	}
-	
+
 	class MyListener_delete implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			panel.revalidate();
@@ -128,24 +159,107 @@ class Radar extends JFrame {
 			list_b = new ArrayList<>();
 		}
 	}
-	
+
 	public Radar() {
-		
-		setSize(500,500);
+
+		setSize(500, 500);
 		setTitle("Bouncing Ball");
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
-		
+
 		btn1.addActionListener(new MyListener_plus());
 		btn2.addActionListener(new MyListener_delete());
-		
+
 		panel.add(btn1);
 		panel.add(btn2);
 		add(panel);
 	}
+
 	public static void main(String args[]) {
 		Radar R = new Radar();
 	}
 }
+
+/*
+ * package first;
+ * 
+ * import java.awt.Color; import java.awt.Graphics; import
+ * java.awt.event.ActionEvent; import java.awt.event.ActionListener; import
+ * java.util.ArrayList; import java.util.List; import java.util.Random;
+ * 
+ * import javax.swing.JButton; import javax.swing.JFrame; import
+ * javax.swing.JPanel;
+ * 
+ * class Radar extends JFrame {
+ * 
+ * JButton btn1 = new JButton("추가"); JButton btn2 = new JButton("삭제"); JPanel
+ * panel = new JPanel();
+ * 
+ * List<Integer> list_x = new ArrayList<>(); List<Integer> list_y = new
+ * ArrayList<>(); List<Float> list_r = new ArrayList<>(); List<Float> list_g =
+ * new ArrayList<>(); List<Float> list_b = new ArrayList<>();
+ * 
+ * class MyListener_plus implements ActionListener { public void
+ * actionPerformed(ActionEvent e) {
+ * 
+ * int x=(int)(Math.random()*1500)+1; int y=(int)(Math.random()*1000)+1; int w=
+ * 200; int h= 200;
+ * 
+ * Random rand = new Random();
+ * 
+ * float r1 = rand.nextFloat(); float g1 = rand.nextFloat(); float b1 =
+ * rand.nextFloat();
+ * 
+ * Color randomColor1 = new Color(r1, g1, b1);
+ * 
+ * list_r.add(r1); list_g.add(g1); list_b.add(b1);
+ * 
+ * while (true) { x=(int)(Math.random()*1500)+1; y=(int)(Math.random()*1000)+1;
+ * if (((x <= 1400) & (x>=100)) & ((y <= 700) & (y>=100))) break; }
+ * 
+ * list_x.add(x); list_y.add(y);
+ * 
+ * Graphics gp1 = getGraphics(); Graphics gp_mid = getGraphics();
+ * 
+ * gp1.setColor(randomColor1); gp1.fillOval(x, y, w, h);
+ * 
+ * gp_mid.setColor(new Color(0,0,0)); gp_mid.fillOval(x+95, y+95,w-190, h-190);
+ * 
+ * 
+ * for (int i = 0; i < list_x.size(); i++) { Graphics gpnew = getGraphics(); if
+ * (i==0) { continue; }
+ * 
+ * int t = 0; gpnew.setColor(new
+ * Color(list_r.get(i),list_g.get(i),list_b.get(i))); while(t<i) {
+ * 
+ * if (list_x.get(t) < list_x.get(i)) { if (list_y.get(t) < list_y.get(i)) {
+ * 
+ * gpnew.fillOval(list_x.get(t)+95+((list_x.get(i) - list_x.get(t))/20),
+ * list_y.get(t)+95+((list_y.get(i) - list_y.get(t))/20), w-190, h-190); t++; }
+ * else { gpnew.fillOval(list_x.get(t)+95+((list_x.get(i) - list_x.get(t))/20),
+ * list_y.get(t)+95-((list_y.get(t) - list_y.get(i))/20), w-190, h-190); t++; }
+ * } else if (list_x.get(t) >= list_x.get(i)){ if (list_y.get(t) <
+ * list_y.get(i)) { gpnew.fillOval(list_x.get(t)+95-((list_x.get(t) -
+ * list_x.get(i))/20), list_y.get(t)+95+((list_y.get(i) - list_y.get(t))/20),
+ * w-190, h-190); t++; } else { gpnew.fillOval(list_x.get(t)+95-((list_x.get(t)
+ * - list_x.get(i))/20), list_y.get(t)+95-((list_y.get(t) - list_y.get(i))/20),
+ * w-190, h-190); t++; } } } } } }
+ * 
+ * class MyListener_delete implements ActionListener { public void
+ * actionPerformed(ActionEvent e) { panel.revalidate(); panel.repaint(); list_x
+ * = new ArrayList<>(); list_y = new ArrayList<>(); list_r = new ArrayList<>();
+ * list_g = new ArrayList<>(); list_b = new ArrayList<>(); } }
+ * 
+ * public Radar() {
+ * 
+ * setSize(500,500); setTitle("Bouncing Ball"); setVisible(true);
+ * setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ * 
+ * 
+ * 
+ * btn1.addActionListener(new MyListener_plus()); btn2.addActionListener(new
+ * MyListener_delete());
+ * 
+ * panel.add(btn1); panel.add(btn2); add(panel); } public static void
+ * main(String args[]) { Radar R = new Radar(); } }
+ */
