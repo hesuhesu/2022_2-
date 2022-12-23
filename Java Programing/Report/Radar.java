@@ -13,7 +13,7 @@
  - 단 직관적으로 봤을 때 상대 레이더의 위치가 납득되는 수준으로 출력 되어야 함
  */
 
-package first;
+package project;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -32,7 +32,7 @@ class Radar extends JFrame {
 
 	JButton btn1 = new JButton("추가");
 	JButton btn2 = new JButton("삭제");
-	JPanel panel = new JPanel();
+	JPanel panel = new MyPanel();
 
 	List<Integer> list_x = new ArrayList<>();
 	List<Integer> list_y = new ArrayList<>();
@@ -41,27 +41,26 @@ class Radar extends JFrame {
 	List<Float> list_b = new ArrayList<>();
 
 	Random rand = new Random();
-	
+
 	float r1 = rand.nextFloat();
 	float g1 = rand.nextFloat();
 	float b1 = rand.nextFloat();
-	
-	
-	
+
 	Color black = new Color(0, 0, 0);
 	Color white = new Color(255, 255, 255);
-	
+
 	int x = (int) (Math.random() * 1500) + 1;
 	int y = (int) (Math.random() * 1000) + 1;
 	int w = 200;
 	int h = 200;
 	int num = 0;
-	
-	
+	int k1 = 30;
+
 	class MyListener_plus implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-
+			
+			repaint();
 			x = (int) (Math.random() * 1500) + 1;
 			y = (int) (Math.random() * 1000) + 1;
 			r1 = rand.nextFloat();
@@ -81,61 +80,36 @@ class Radar extends JFrame {
 
 			list_x.add(x);
 			list_y.add(y);
-			
+
 			num++;
-			System.out.println("<"+num+"번 수정됨>");
+			System.out.println("<" + num + "번 수정됨>");
 			System.out.println("x는 : " + list_x);
 			System.out.println("y는 : " + list_y);
-			
-			
-			Graphics gpnew = getGraphics();
-			Graphics gp1 = getGraphics();
-			Graphics gp_mid = getGraphics();
 
-			Graphics gpwhite = getGraphics();
-			Graphics gpblack = getGraphics();
 			
-			Color randomColor1 = new Color(r1, g1, b1);
-			gp_mid.setColor(black);
-			gpwhite.setColor(white);
-			gpblack.setColor(black);
-
-			gp1.setColor(randomColor1);
-			gp1.fillOval(x, y, w, h);
-			gpblack.drawOval(x, y, w, h);
-
-			gp_mid.fillOval(x + 95, y + 95, w - 195, h - 195);
-			gpwhite.drawOval(x + 95, y + 95, w - 195, h - 195);
-			
-			Thread t = new Thread(new MyRunnable());
-			t.start();
 		}
 	}
-	
-	
-	
+
 	class MyListener_delete implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			
-			panel.revalidate();
-			panel.repaint();
-			
+			revalidate();
+			repaint();
 			list_x = new ArrayList<>();
 			list_y = new ArrayList<>();
 			list_r = new ArrayList<>();
 			list_g = new ArrayList<>();
 			list_b = new ArrayList<>();
-			
-			System.out.println("\n"+num+"번 삭제됨\n");
+
+			System.out.println("\n" + num + "번 삭제됨\n");
+			num = 0;
+
 		}
 	}
-	class MyRunnable implements Runnable{
-		
-		public void update(int i) {
-			i++;
-		}
-		
-		public void run() {	
+	class MyPanel extends JPanel {
+
+		public void paintComponent(Graphics g) {
+			
 			
 			Graphics gpnew = getGraphics();
 			Graphics gp1 = getGraphics();
@@ -145,62 +119,102 @@ class Radar extends JFrame {
 			Graphics gpblack = getGraphics();
 			
 			Color randomColor1 = new Color(r1, g1, b1);
-			
 			gp_mid.setColor(black);
 			gpwhite.setColor(white);
 			gpblack.setColor(black);
-
-			gp1.setColor(randomColor1);
-			gp1.fillOval(x, y, w, h);
-			gpblack.drawOval(x, y, w, h);
-
-			gp_mid.fillOval(x + 95, y + 95, w - 195, h - 195);
-			gpwhite.drawOval(x + 95, y + 95, w - 195, h - 195);
+			
+			for (int d = 0; d<list_x.size(); d++) {
+				gp1.setColor(new Color(list_r.get(d), list_g.get(d), list_b.get(d)));
+				gp1.fillOval(list_x.get(d), list_y.get(d), w, h);
+				gpblack.drawOval(list_x.get(d), list_y.get(d), w, h);
+				gp_mid.fillOval(list_x.get(d)+95, list_y.get(d)+95, w-195, h-195);
+				gpwhite.drawOval(list_x.get(d)+95, list_y.get(d)+95, w-195, h-195);
+			}
 			
 			for (int i = 0; i < list_x.size(); i++) {
 
 				int t = 0;
-				int k = 0;
-				if (i == 0)
+				
+				if (i == 0) {
 					continue;
-								
+				}
+				
+				gp_mid.fillOval(list_x.get(i)+95, list_y.get(i)+95, w-195, h-195);
+				gpwhite.drawOval(list_x.get(i)+95, list_y.get(i)+95, w-195, h-195);
+			
 				gpnew.setColor(new Color(list_r.get(i), list_g.get(i), list_b.get(i)));
+				
 				while (t < i) {
 					if (list_x.get(t) < list_x.get(i)) {
 						if (list_y.get(t) < list_y.get(i)) {
-							gp_mid.fillOval(list_x.get(t) + 95, list_y.get(t) + 95, w - 195, h - 195);
-							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95, w - 195, h - 195);	
-							gpnew.fillOval(list_x.get(t) + 95 + ((list_x.get(i) - list_x.get(t)) / 15),
-									list_y.get(t) + 95 + ((list_y.get(i) - list_y.get(t)) / 15), w - 190, h - 190);
-							gpwhite.drawOval(list_x.get(t) + 95 + ((list_x.get(i) - list_x.get(t)) / 15),
-									list_y.get(t) + 95 + ((list_y.get(i) - list_y.get(t)) / 15), w - 190, h - 190);
+							while(k1>15) {
+								gpnew.fillOval(list_x.get(t) + 95 + ((list_x.get(i) - list_x.get(t)) / k1),
+										list_y.get(t) + 95 + ((list_y.get(i) - list_y.get(t)) / k1), w - 190, h - 190);
+								gpwhite.drawOval(list_x.get(t) + 95 + ((list_x.get(i) - list_x.get(t)) / k1),
+										list_y.get(t) + 95 + ((list_y.get(i) - list_y.get(t)) / k1), w - 190, h - 190);
+								try {
+									Thread.sleep(20);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								k1--;
+							}
 							t++;
+							k1 = 30;
 						} else {
-							gp_mid.fillOval(list_x.get(t) + 95, list_y.get(t) + 95, w - 195, h - 195);
-							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95, w - 195, h - 195);
-							gpnew.fillOval(list_x.get(t) + 95 + ((list_x.get(i) - list_x.get(t)) / 15),
-									list_y.get(t) + 95 - ((list_y.get(t) - list_y.get(i)) / 15), w - 190, h - 190);
-							gpwhite.drawOval(list_x.get(t) + 95 + ((list_x.get(i) - list_x.get(t)) / 15),
-									list_y.get(t) + 95 - ((list_y.get(t) - list_y.get(i)) / 15), w - 190, h - 190);
+							while(k1>15) {
+								gpnew.fillOval(list_x.get(t) + 95 + ((list_x.get(i) - list_x.get(t)) / k1),
+										list_y.get(t) + 95 + ((-list_y.get(t) + list_y.get(i)) / k1), w - 190, h - 190);
+								gpwhite.drawOval(list_x.get(t) + 95 + ((list_x.get(i) - list_x.get(t)) / k1),
+										list_y.get(t) + 95 + ((-list_y.get(t) + list_y.get(i)) / k1), w - 190, h - 190);
+								try {
+									Thread.sleep(20);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								k1--;
+							}
+							
 							t++;
+							k1 = 30;
 						}
 					} else if (list_x.get(t) >= list_x.get(i)) {
 						if (list_y.get(t) < list_y.get(i)) {
-							gp_mid.fillOval(list_x.get(t) + 95, list_y.get(t) + 95, w - 195, h - 195);
-							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95, w - 195, h - 195);
-							gpnew.fillOval(list_x.get(t) + 95 - ((list_x.get(t) - list_x.get(i)) / 15),
-									list_y.get(t) + 95 + ((list_y.get(i) - list_y.get(t)) / 15), w - 190, h - 190);
-							gpwhite.drawOval(list_x.get(t) + 95 - ((list_x.get(t) - list_x.get(i)) / 15),
-									list_y.get(t) + 95 + ((list_y.get(i) - list_y.get(t)) / 15), w - 190, h - 190);
+							while(k1>15) {
+								gpnew.fillOval(list_x.get(t) + 95 + ((-list_x.get(t) + list_x.get(i)) / k1),
+										list_y.get(t) + 95 + ((list_y.get(i) - list_y.get(t)) / k1), w - 190, h - 190);
+								gpwhite.drawOval(list_x.get(t) + 95 + ((-list_x.get(t) + list_x.get(i)) / k1),
+										list_y.get(t) + 95 + ((list_y.get(i) - list_y.get(t)) / k1), w - 190, h - 190);
+								try {
+									Thread.sleep(20);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								k1--;
+							}
+							
 							t++;
+							k1 = 30;
 						} else {
-							gp_mid.fillOval(list_x.get(t) + 95, list_y.get(t) + 95, w - 195, h - 195);
-							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95, w - 195, h - 195);
-							gpnew.fillOval(list_x.get(t) + 95 - ((list_x.get(t) - list_x.get(i)) / 15),
-									list_y.get(t) + 95 - ((list_y.get(t) - list_y.get(i)) / 15), w - 190, h - 190);
-							gpwhite.drawOval(list_x.get(t) + 95 - ((list_x.get(t) - list_x.get(i)) / 15),
-									list_y.get(t) + 95 - ((list_y.get(t) - list_y.get(i)) / 15), w - 190, h - 190);
+							while(k1>15) {
+								gpnew.fillOval(list_x.get(t) + 95 + ((-list_x.get(t) + list_x.get(i)) / k1),
+										list_y.get(t) + 95 + ((-list_y.get(t) + list_y.get(i)) / k1), w - 190, h - 190);
+								gpwhite.drawOval(list_x.get(t) + 95 + ((-list_x.get(t) + list_x.get(i)) / k1),
+										list_y.get(t) + 95 + ((-list_y.get(t) + list_y.get(i)) / k1), w - 190, h - 190);
+								try {
+									Thread.sleep(20);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								k1--;
+							}
+							
 							t++;
+							k1 = 30;
 						}
 					}
 				}
@@ -208,68 +222,113 @@ class Radar extends JFrame {
 			for (int j = list_x.size() - 1; j >= 0; j--) {
 
 				int t = list_x.size() - 1;
-
-				if (j == list_x.size() - 1)
+	
+				if (j == list_x.size() - 1) {
+					
 					continue;
+				}
 
+				
+				gp_mid.fillOval(list_x.get(j)+95, list_y.get(j)+95, w-195, h-195);
+				gpwhite.drawOval(list_x.get(j)+95, list_y.get(j)+95, w-195, h-195);
+				
 				gpnew.setColor(new Color(list_r.get(j), list_g.get(j), list_b.get(j)));
 
 				while (t > j) {
 					if (list_x.get(t) < list_x.get(j)) {
 						if (list_y.get(t) < list_y.get(j)) {
-							gp_mid.fillOval(list_x.get(t) + 95, list_y.get(t) + 95, w - 195, h - 195);
-							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95, w - 195, h - 195);
-							gpnew.fillOval(list_x.get(t) + 95 + ((list_x.get(j) - list_x.get(t)) / 15),
-									list_y.get(t) + 95 + ((list_y.get(j) - list_y.get(t)) / 15), w - 190, h - 190);
-							gpwhite.drawOval(list_x.get(t) + 95 + ((list_x.get(j) - list_x.get(t)) / 15),
-									list_y.get(t) + 95 + ((list_y.get(j) - list_y.get(t)) / 15), w - 190, h - 190);
+							while(k1>15) {
+								gpnew.fillOval(list_x.get(t) + 95 + ((list_x.get(j) - list_x.get(t)) / k1),
+										list_y.get(t) + 95 + ((list_y.get(j) - list_y.get(t)) / k1), w - 190, h - 190);
+								gpwhite.drawOval(list_x.get(t) + 95 + ((list_x.get(j) - list_x.get(t)) / k1),
+										list_y.get(t) + 95 + ((list_y.get(j) - list_y.get(t)) / k1), w - 190, h - 190);
+								try {
+									Thread.sleep(20);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								k1--;
+							}
+							
 							t--;
+							k1 = 30;
 						} else {
-							gp_mid.fillOval(list_x.get(t) + 95, list_y.get(t) + 95, w - 195, h - 195);
-							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95, w - 195, h - 195);
-							gpnew.fillOval(list_x.get(t) + 95 + ((list_x.get(j) - list_x.get(t)) / 15),
-									list_y.get(t) + 95 - ((list_y.get(t) - list_y.get(j)) / 15), w - 190, h - 190);
-							gpwhite.drawOval(list_x.get(t) + 95 + ((list_x.get(j) - list_x.get(t)) / 15),
-									list_y.get(t) + 95 - ((list_y.get(t) - list_y.get(j)) / 15), w - 190, h - 190);
+							while(k1>15) {
+								gpnew.fillOval(list_x.get(t) + 95 + ((list_x.get(j) - list_x.get(t)) / k1),
+										list_y.get(t) + 95 + ((-list_y.get(t) + list_y.get(j)) / k1), w - 190, h - 190);
+								gpwhite.drawOval(list_x.get(t) + 95 + ((list_x.get(j) - list_x.get(t)) / k1),
+										list_y.get(t) + 95 + ((-list_y.get(t) + list_y.get(j)) / k1), w - 190, h - 190);
+								try {
+									Thread.sleep(20);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								k1--;
+							}
+							
 							t--;
+							k1 =30;
 						}
 					} else if (list_x.get(t) >= list_x.get(j)) {
 						if (list_y.get(t) < list_y.get(j)) {
-							gp_mid.fillOval(list_x.get(t) + 95, list_y.get(t) + 95, w - 195, h - 195);
-							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95, w - 195, h - 195);
-							gpnew.fillOval(list_x.get(t) + 95 - ((list_x.get(t) - list_x.get(j)) / 15),
-									list_y.get(t) + 95 + ((list_y.get(j) - list_y.get(t)) / 15), w - 190, h - 190);
-							gpwhite.drawOval(list_x.get(t) + 95 - ((list_x.get(t) - list_x.get(j)) / 15),
-									list_y.get(t) + 95 + ((list_y.get(j) - list_y.get(t)) / 15), w - 190, h - 190);
+							while(k1>15) {
+								gpnew.fillOval(list_x.get(t) + 95 + ((list_x.get(j) - list_x.get(t)) / k1),
+										list_y.get(t) + 95 + ((list_y.get(j) - list_y.get(t)) / k1), w - 190, h - 190);
+								gpwhite.drawOval(list_x.get(t) + 95 + ((list_x.get(j) - list_x.get(t)) / k1),
+										list_y.get(t) + 95 + ((list_y.get(j) - list_y.get(t)) / k1), w - 190, h - 190);
+								try {
+									Thread.sleep(20);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								k1--;
+							}
+							
 							t--;
+							k1 =30;
 						} else {
-							gp_mid.fillOval(list_x.get(t) + 95, list_y.get(t) + 95, w - 195, h - 195);
-							gpwhite.drawOval(list_x.get(t) + 95, list_y.get(t) + 95, w - 195, h - 195);	
-							gpnew.fillOval(list_x.get(t) + 95 - ((list_x.get(t) - list_x.get(j)) / 15),
-									list_y.get(t) + 95 - ((list_y.get(t) - list_y.get(j)) / 15), w - 190, h - 190);
-							gpwhite.drawOval(list_x.get(t) + 95 - ((list_x.get(t) - list_x.get(j)) / 15),
-									list_y.get(t) + 95 - ((list_y.get(t) - list_y.get(j)) / 15), w - 190, h - 190);
+							while(k1<15) {
+								gpnew.fillOval(list_x.get(t) + 95 + ((-list_x.get(t) + list_x.get(j)) / k1),
+										list_y.get(t) + 95 + ((-list_y.get(t) + list_y.get(j)) / k1), w - 190, h - 190);
+								gpwhite.drawOval(list_x.get(t) + 95 + ((-list_x.get(t) + list_x.get(j)) / k1),
+										list_y.get(t) + 95 + ((-list_y.get(t) + list_y.get(j)) / k1), w - 190, h - 190);
+								try {
+									Thread.sleep(20);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								k1--;
+							}
+							
 							t--;
+							k1 = 30;
 						}
 					}
 				}
 			}
+			
 		}
 	}
+
 	public Radar() {
 		setSize(800, 800);
 		setTitle("Java Radar");
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		// Timer timer = new Timer();
 		btn1.addActionListener(new MyListener_plus());
 		btn2.addActionListener(new MyListener_delete());
-		
 		panel.add(btn1);
 		panel.add(btn2);
+		
 		add(panel);
 	}
+
 	public static void main(String args[]) {
 		Radar R = new Radar();
 	}
