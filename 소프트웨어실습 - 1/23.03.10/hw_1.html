@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="text-align:center">
+    첫 번째 수 : <input type = "text" id = "first"><p>
+    두 번째 수 : <input type = "text" id = "second"><p>
+        <button onclick="plus()">+</button>
+        <button onclick="minus()">-</button>
+        <button onclick="cop()">*</button>
+        <button onclick="nanu()">/</button>
+        <button onclick="namezi()">%</button> <p>
+        <div id="showResult"></div>	
+        <script>
+            function plus() {
+			var firstPrice = document.querySelector('#first').value;  // 원래 가격
+			var secondPrice = document.querySelector('#second').value; // 둘 째
+			var result = Number(firstPrice) + Number(secondPrice);  // 최종 결과			
+			document.querySelector('#showResult').innerHTML = "두 수의 합은 " + result + "입니다"; 
+		}
+        function minus() {
+			var firstPrice = document.querySelector('#first').value;  // 원래 가격
+			var secondPrice = document.querySelector('#second').value; // 둘 째
+			var result = Number(firstPrice) - Number(secondPrice);  // 최종 결과			
+			document.querySelector('#showResult').innerHTML = "두 수의 차는 " + result + "입니다"; 
+		}
+        function cop() {
+			var firstPrice = document.querySelector('#first').value;  // 원래 가격
+			var secondPrice = document.querySelector('#second').value; // 둘 째
+			var result = Number(firstPrice) * Number(secondPrice);  // 최종 결과			
+			document.querySelector('#showResult').innerHTML = "두 수의 곱은 " + result + "입니다"; 
+		}
+        function nanu() {
+			var firstPrice = document.querySelector('#first').value;  // 원래 가격
+			var secondPrice = document.querySelector('#second').value; // 둘 째
+			var result = Number(firstPrice) / Number(secondPrice);  // 최종 결과			
+			document.querySelector('#showResult').innerHTML = "두 수의 몫은 " + result + "입니다"; 
+		}
+        function namezi() {
+			var firstPrice = document.querySelector('#first').value;  // 원래 가격
+			var secondPrice = document.querySelector('#second').value; // 둘 째
+			var result = Number(firstPrice) % Number(secondPrice);  // 최종 결과			
+			document.querySelector('#showResult').innerHTML = "두 수의 나머지는 " + result + "입니다"; 
+		}
+        
+        </script>
+</body>
+</html>

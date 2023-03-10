@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var ary1 = ["test1", "test2", "test3"];
+        var ary2 = [10,20,30,40];
+        var ary3 = ["name", 10];
+        console.log(ary1);
+        console.log(ary2);
+        console.log(ary3);
+
+        var ary4 = new Array();
+        ary4[0] = "hello";
+        ary4[4] = "bye";
+        console.log(ary4);
+
+        var kim = {
+            firstName : "john",
+            lastName : "kim",
+            age : 15,
+            address : "seoul"
+        }
+        console.log(kim.age); // 특정 key값을 통해 value 호출가능
+        console.log(typeof(kim));
+        console.log(typeof(ary2));
+
+        kim.nickName = "freshman";
+        console.log(kim); // 기존의 딕셔너리에 추가 가능함.
+
+        var n1 = "10";
+        var n2 = 10;
+        console.log(n1==n2); // 서로 같다고 판단한다.
+        console.log(n1+n2);
+        console.log(n1-n2); // 자동 계산해줌.
+        console.log(n1===n2); // type이 다르기 때문에 false
+    </script>
+</body>
+</html>
