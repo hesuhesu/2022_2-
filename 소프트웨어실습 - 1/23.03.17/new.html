@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>할인 가격 구하기</title>
+	<link rel="stylesheet" href="css/bargain.css">
+</head>
+<body>	
+	<div id="contents">
+		<img src="images/sale.png">
+		<ul>
+			<li>
+					<label for="oPrice">n1</label> 
+					<input type="text" id="oPrice">
+			</li>
+			<li>
+				<label for="rate">n2</label>
+				<input type="text" id="rate">
+			</li>
+			<li>
+				<button onclick="showPrice()">n1/n2</button>
+			</li>
+		</ul>
+		<div id="showResult"></div>	
+		<div id = "b"></div>
+	</div>
+	
+	</div>	
+	<script>
+		function showPrice() {
+			var originPrice = document.querySelector('#oPrice').value;  // 원래 가격
+			var rate = document.querySelector('#rate').value; // 할인율
+			
+			if (originPrice == '0'){
+				alert('첫 번째 수가 0입니다. 0보다 큰 수를 입력하세요.');
+			}
+			else if (rate == '0'){
+				alert('두 번째 수가 0입니다. 0보다 큰 수를 입력하세요.');
+			}
+			else if ((!isNaN(originPrice)) | (!isNaN(rate))){
+				alert('수를 입력해주세요');
+			}
+			else if ((originPrice == '') | (rate == '')){
+				alert('입력이 안되었어요 입력하세요');
+			}
+			else {
+				document.querySelector('#showResult').innerHTML = `n1/n2 는 ${originPrice/rate} 입니다.`;
+			} 
+
+			
+
+			
+		}
+		var test;
+		console.log(test);
+		test = test||0;
+		console.log(test);
+
+		// sort
+
+		let array1 = [100,21,13,40,200];
+		let array2 = [11,41,23,33];
+		array1.sort(function compare(a,b){
+			if (!(isNaN(a)&&isNaN(b))) {
+				return a-b;
+			}
+		});
+		array2.sort();
+		console.log(array1);
+		console.log(array2);
+
+		var array3=[10, 'hi', 1,3,'hello'];
+		array3.sort(function compare(a,b){
+			if (!(isNaN(a)&&isNaN(b))) {
+				return a-b;
+			} // 오름차순 경우이고 내림차순은 b-a;
+		});
+		console.log(array3);
+
+		// slice
+
+		let array4 = [10,20,34,50,30];
+		let array5 = array4.slice(2,4);
+		console.log(array5);
+		
+		// reverse
+
+		let array6 = [10,20,30,40];
+		array6.reverse();
+		console.log(array6);
+
+		// splice
+
+		let array7 = [10,20,34,50,30,];
+		array7.splice(1,0,44); // start,deletecount, item1, item2			console.log(array7);
+		array7.splice(3,2,33,53);
+		console.log(array7);
+		array7.splice(4,2,33);
+		console.log(array7);
+
+		// forEach
+
+		let array8 = [52,273,32,64,72];
+		array8.forEach((item, index)=>{
+			console.log(index + "번째 요소는 "+item+"입니다.");
+		});
+
+		/*
+		var array9=[100,5,13,3,54];
+		var s = "";
+		array.forEach((item, index)=>{
+			s = "<p>"+item;
+		});
+		document.querySelector("#b").innerHTML = s;
+		*/
+
+		array12 = 'hello';
+		var array13 = [100,5,13,3,54];
+		var array = 1;
+		var s = "";
+		var array = funcion({
+
+		});
+
+	</script>
+</body>
+</html>
