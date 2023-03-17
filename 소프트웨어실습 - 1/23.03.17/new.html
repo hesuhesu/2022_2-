@@ -33,25 +33,25 @@
 			var originPrice = document.querySelector('#oPrice').value;  // 원래 가격
 			var rate = document.querySelector('#rate').value; // 할인율
 			
-			if (originPrice == '0'){
+			if ((originPrice == '0')&(rate == '0')){
+				alert('둘 다 0입니다. 0보다 큰 수를 입력하세요.')
+			}
+			else if (originPrice == '0'){
 				alert('첫 번째 수가 0입니다. 0보다 큰 수를 입력하세요.');
 			}
 			else if (rate == '0'){
 				alert('두 번째 수가 0입니다. 0보다 큰 수를 입력하세요.');
 			}
-			else if ((!isNaN(originPrice)) | (!isNaN(rate))){
-				alert('수를 입력해주세요');
-			}
-			else if ((originPrice == '') | (rate == '')){
+
+			else if ((!originPrice) | (!rate) ){
 				alert('입력이 안되었어요 입력하세요');
+			}
+			else if (isNaN(originPrice) | isNaN(rate)){
+				alert('숫자를 입력하세요');
 			}
 			else {
 				document.querySelector('#showResult').innerHTML = `n1/n2 는 ${originPrice/rate} 입니다.`;
 			} 
-
-			
-
-			
 		}
 		var test;
 		console.log(test);
