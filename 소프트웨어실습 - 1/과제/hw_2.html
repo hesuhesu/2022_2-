@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>숫자, 문자 배열</title>
+</head>
+<body style = "text-align:center">	
+	
+		
+	<script>
+		
+
+		let array1 = [];
+		do {
+    	input = prompt("리스트 요소 입력");
+    	array1.push(input);
+		} while (input != null);
+		
+		array1.pop();
+
+		let array_num = [];
+		let array_string = [];
+
+		array1.forEach((item, index)=>{
+			if (isNaN(item) == 1){
+				array_string.push(item);
+			}
+			else {
+				array_num.push(item);
+			}
+		})
+
+		array_num.sort(function compare(a,b){
+			if (!(isNaN(a)&&isNaN(b))) {
+				return b-a;
+			
+			}
+		});
+		array_string.sort();
+
+		
+
+		array_num.forEach((item, index)=>{
+			document.write(item,"<br>");
+		})
+		document.write("---------------------------경계선---------------------------","<br>");
+		array_string.forEach((item, index)=>{
+			document.write(item,"<br>");
+		})
+	</script>
+</body>
+</html>
