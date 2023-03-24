@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let 함수 = function(){
+            console.log("<익명함수 호출 - 1>");
+        };
+
+        (function (){
+            console.log("<익명함수 호출 - 2>");
+        })();
+
+        함수();
+        console.log(함수); // 함수()를 하게되면 정의되지 않는다고 됨.
+        console.log("-----------------------------------");
+
+        function f2(){
+            console.log("<선언함수 호출>");
+        }
+
+        f2();
+        console.log(f2);
+        console.log("-----------------------------------");
+
+        let 함수2=()=>{
+            console.log("화살표 함수 호출");
+        } // 한 줄일 경우 중괄호 안해도 됨. 자바, c와 같은 개념
+
+        함수2();
+        console.log(함수2);
+        console.log("-----------------------------------");
+
+        f3 = function() {console.log("혼합 생성- 1 (익명)");}
+        function f3(){
+            console.log("혼합 생성-1 (선언)");
+        } // 호이스팅되기 때문에 건너뛴다. 이미 선언됨.
+        f3();
+
+        function f4(){
+            console.log("f4 호출 - 1");
+        }
+        function f4(){
+            console.log("f4 호출 - 2");
+        }
+        f4();
+
+
+        f5();
+        function f5(){
+            console.log("f5 호출 - 1");
+        }
+        f5();
+        function f5(){
+            console.log("f5 호출 - 2");
+        }
+        f5(); // 제일 마지막에 선언된 함수를 호출한다. 호이스팅의 좋은 예시.
+
+
+        console.log(s);
+        function s(){
+            console.log("s 호출 - 1");
+        }
+        console.log(s);
+        function s(){
+            console.log("s 호출 - 2");
+        }
+        var s = 10; // let을 하면 에러난다. 
+        console.log(s);
+        
+        
+        function print1(name, count){
+            console.log(name + "가 "+count+"개 있습니다.");
+        }
+        print1("javascript", 5);
+        print1("javascript");
+        print1();
+
+        function print2(name, count){
+            if(!count){
+                count = 1;
+            }
+            if(!name){
+                name = "언어";
+            }
+            console.log(name + "가 "+count+"개 있습니다.");
+        }
+        print2("javascript", 5);
+        print2("javascript");
+        print2();
+
+        // callback
+        let count = 0;
+        function callTenTimes(callback){
+            for(let i = 0; i<10; i++){
+                callback();
+            }
+        }
+        callTenTimes(function(){
+            count++;
+            console.log(count + "번째 함수 호출");
+        })
+
+        // 내부, 외부함수
+        function outer(x){
+            function inner(y){
+                return x+y
+            }
+            return inner;
+        }
+
+        let a = outer(4);
+        let result = a(5);
+        console.log(result);
+
+
+        // 표준 내장함수-숫자 변환 함수
+        let inputA = "1404동";
+
+        console.log(parseInt(inputA));
+        console.log(inputA);
+
+        // setTimeout, setInterval
+        let id = setInterval(() => {
+            console.log("1초마다 호출됩니다.");
+        },1000);
+        setTimeout(() => {
+            console.log("10초가 지났습니다. 종료합니다.");
+            clearInterval(id); // 없으면 끊임없이 호출한다.
+        },10000);
+
+    </script>
+</body>
+</html>
