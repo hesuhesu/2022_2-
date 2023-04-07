@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>HW</title>
+</head>
+<body>
+	
+	<script>
+        // 리터럴 표기법으로 객체 생성
+        console.log("<리터럴 표기법으로 객체 생성>");
+        let book = {
+            title : "javascript",
+            page : 500,
+            info:function(){
+                console.log(this.title+"책의 분량은 "+this.page+"쪽입니다")
+            }
+        }
+        console.log(book.title);
+        book.info();
+        console.log(book.toString());
+        console.dir(book);
+        console.log("-------------------------------");
+        // 생성자 함수를 이용해 객체 생성
+        console.log("<생성자 함수를 이용해 객체 생성>");
+        function Book(title, page){
+            this.title = title;
+            this.page = page || 0;
+            this.info = function(){
+                console.log(this.title+"책의 분량은 "+this.page+"쪽입니다")
+            }
+        }
+        let book1 = new Book("1_java", 200);
+        let book2 = new Book("1_C");
+        let book3 = Book("1_new", 300);
+        book1.info();
+        book2.info();
+        // book3.info();는 new 키워드가 없으면 일반 함수로 취급하기 때문에 오류가 남.
+        console.log(title, page);
+        console.log("-------------------------------");
+
+        // 프로토타입
+        console.log("<프로토타입>");
+        function Book2(title, page){
+            this.title = title;
+            this.page = page || 0;
+        }
+        Book.prototype.info=function(){
+            console.log(this.title+"책의 분량은 "+this.page+"쪽입니다")
+        } // 프로토타입을 지정해주면 메모리 측면에서 효율적이다.
+        let book4 = new Book("2_java", 200);
+        let book5 = new Book("2_C");
+        book4.info();
+        book5.info();
+        console.log("-------------------------------");
+        // 기본 자료형 & 객체 자료형
+        console.log("<기본 자료형 & 객체 자료형>");
+        let num1 = 273;
+        let string1 = "hi";
+        let bool1 = true;
+
+        console.log(typeof(num1));
+        console.log(typeof(string1));
+        console.log(typeof(bool1));
+
+        let num = new Number(273);
+        let string = new String("hi");
+        let bool = new Boolean(true);
+
+        console.log(typeof(num));
+        console.log(typeof(string));
+        console.log(typeof(bool));
+
+        let str = "과자 | 1500"
+        console.log(str.split("|"));
+
+        let str1 = new String("과제 | 1500");
+        console.log(str.split("|"));
+
+        let num2 = new Number(123);
+        num2.method1 = function(){
+            console.log("method1");
+        }
+        num2.method1();
+
+        let num3 = 123;
+        Number.prototype.method2 = function(){
+            console.log("method2");
+        }
+        num3.method2();
+
+        console.log("-------------------------------");
+
+        // Number 객체
+        console.log("<Number 객체>");
+        
+        let num4 = 274.12345;
+
+        console.log(num1.toFixed(1));
+        console.log(num1.toFixed(4));
+        console.log(num1.toExponential());
+        console.log(num1.toPrecision());
+        console.log(num1.toPrecision()+1);
+        
+        let numA = Number.MAX_VALUE;
+        let numB = Number.MIN_VALUE;
+        console.log(numA);
+        console.log(numB);
+        console.log(Number.POSITIVE_INFINITY);
+        console.log(Number.NEGATIVE_INFINITY);
+        console.log("-------------------------------");
+
+        // String 객체
+        console.log("<String 객체>");
+        let str2 = new String("hello my students!");
+        let email = new String("ekoh20@gmail.com");
+
+        console.log(str2.charAt(7));
+        console.log(email.indexOf("@"));
+        console.log(str2.slice(2,5));
+        console.log(str2.split(" "));
+        console.log(str2.substr(2,5));
+        console.log(str2.substring(2,5));
+        console.log(str2.toUpperCase());
+        console.log(str2);
+        
+        let str3 = new String('Hello my name is Eun');
+        String.prototype.contain = function(input){
+            return this;
+        }
+        console.log(str3.contain('name'));
+
+        let str4 = new String("Html Css JQuery");
+        let reg1 = /css/;
+        console.log(reg1.test(str4));
+        let str5 = new String("Html Css JQuery");
+        let reg2 = new RegExp("css");
+        console.log(reg1.test(str4));
+        let str6 = new String("Html Css JQuery");
+        let reg3 = /css/i;
+        console.log(reg1.test(str4));
+
+	</script>
+</body>
+</html>
