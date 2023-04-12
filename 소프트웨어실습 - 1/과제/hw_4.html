@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+
+<script>
+
+        let storage = localStorage;
+
+	    function submit_chk(myForm){
+            myForm = this.myForm;
+            let User_name = document.getElementById('user_name').value;
+            let User_tel = document.getElementById('user_tel').value;
+                
+            if((!document.getElementById('user_name').value)|(!document.getElementById('user_tel').value)){
+                alert("입력을 빼먹었습니다. 다시하세요.");
+                
+                document.f1.user_name.value = "";
+                document.f1.user_tel.value = "";
+                document.f1.user_name.focus();
+                return false;
+            }
+            else if (User_tel.length == 11){
+                storage.setItem(User_name, User_tel);
+                alert(User_name+"님 가입 환영합니다!");
+            }
+            else {
+                alert("숫자가 다른데요? 다시 입력해주세요.");
+            }
+            
+        }
+        function reset_chk(myForm){
+            document.f1.user_name.focus()
+        }
+        function list_show(){
+            var output = "";
+            for(let i =0, len = storage.length; i < len; i++){
+                let k = storage.key(i);
+                let v = storage[k];
+                output += "</p>" + k + " : " + v + "</p>";
+            }
+            document.querySelector("#user_list").innerHTML = output;
+            
+            console.log("불러옴");
+        }
+        function list_close(){
+            document.querySelector("#user_list").innerHTML = "";
+            console.log("x");
+        }
+        function list_clear(){
+            storage.clear();
+            alert("리스트가 모두 삭제되었습니다!");
+            document.querySelector("#user_list").innerHTML = "";
+        }
+</script>
+</head>
+<body onload = "document.f1.user_name.focus()">
+	<form action = "#" method = "POST" name = "f1" onsubmit="return submit_chk(this);" onreset = "return reset_chk(this)">
+        <fieldset>
+            <legend>회원 가입</legend>
+            <p>
+                <label for = "user_name">이름 </label>
+                <input type = "text" name = "user_name" id="user_name">
+            </p>
+            <p>
+                <label for = "user_name">연락처</label>
+                <input type = "text" name = "user_tel" id = "user_tel">
+            </p>
+            <p>
+                <input type = "submit" value = "회원가입">
+                <input type = "reset" value = "가입취소">
+            </p>
+            <p>
+                
+            </p>
+        </fieldset>
+    </form>
+    <p>
+        <button name = "btn1" onclick = "list_show()">출력</button>
+        <button name = "btn2" onclick = "list_close()">지우기</button><br>
+        번외 : <button name = "btn3" onclick = "list_clear()">목록 모두 지우기</button><br>    
+        
+        <div id = "user_list"></div>
+        
+    </p>
+	
+</body>
+</html>
