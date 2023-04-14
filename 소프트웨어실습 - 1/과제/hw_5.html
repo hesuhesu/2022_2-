@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>HW</title>
+</head>
+<body>
+	
+	<script>
+        
+        let regtest1 = new RegExp("@");
+        let regtest2 = new RegExp(".");
+        
+        while (true) {
+            let A = prompt("Email 입력");
+            if (regtest1.test(A) & regtest2.test(A)){
+                if (A.indexOf("@") < A.indexOf(".")){
+                    console.log("끝");
+                    break;
+                }
+                else {
+                    continue;
+                }
+            }
+        }
+	</script>
+</body>
+</html>
