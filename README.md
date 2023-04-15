@@ -18,6 +18,7 @@
 + 수치해석
 + 소프트웨어 실습 - 1
 + OS
++ LinuxSystem
 
 @ middle test(23.04.20 ~ 23.04.26)
 
