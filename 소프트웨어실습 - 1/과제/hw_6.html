@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>D-Day</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Black+Han+Sans|Jua');
+
+* {
+	box-sizing: border-box;
+}
+.container{
+  width:450px;
+  margin:0 auto;
+  /* background:url(images/heart.png) no-repeat 5px -100px;
+  background-size:500px;   */
+  border:1px solid #ccc;
+  border-radius:2%;
+  box-shadow:2px 2px 5px #333;
+}
+.day1{
+  padding-top:20px;
+  text-align:center;  
+}
+.day1 h3 {
+  font-size:1.2em;
+  color:#666;
+}
+.accent{
+  margin-left:10px;
+	margin-right:10px;
+	margin-top:10px;
+	font-family: 'Jua', sans-serif;
+	font-weight:bold;
+  font-size:3.5em;
+  color:#222;
+}
+.bar {
+	width:100%;
+	margin:60px auto 0 auto;
+	padding-left:15px;
+	height:40px;	
+	background:#747474;
+	color:#fff;
+	font-size:1.2em;
+	line-height:40px;
+}
+.day2 {
+  width:420px;
+  margin:20px auto 20px auto;
+}
+.day2 ul {
+  list-style: none;
+  border-bottom:1px dashed #ccc;
+  height:60px;
+}
+.day2 ul:last-child {
+	border-bottom:none;
+}
+.item-title {
+  float:left;
+  width:160px;        
+  font-weight:bold;
+  font-size:1.5em;
+  line-height:60px;
+}
+.item-date {
+  float:left;
+  margin-left:60px;
+  font-size:1.2em;
+  color:#222;
+  text-align:right;
+  line-height:60px;
+}
+
+</style>
+<body>
+	<div class="container">
+		<div class="day1">
+			<h3>날짜 계산</h3>
+			<p id="accent" class="accent"><span style="font-size:0.6em; font-style:italic">며칠?</span></p>
+			</div>
+			<div class = 'calcday'>
+				<input type = "text" name = "checkDay" id = "checkDay">
+				<input type = "text" name = "calcDay" id = "calcDay">
+				<button onclick = "clickclick()">출력</button>
+			</div>
+			<div class="bar">앞으로의 날짜 계산</div>
+			<div class="day2">
+				<ul>
+					<li class="item-title">100일</li>         
+					<li class="item-date" id="date100"></li>
+				</ul>
+				<ul>
+					<li class="item-title">200일</li>
+					<li class="item-date" id="date200"></li>
+				</ul>     
+				<ul>
+						<li class="item-title">1년</li>
+						<li class="item-date" id="date365"></li>
+					</ul>      
+                    <ul>
+                        <li class="item-title" id="datetest">N일</li>
+                        <li class="item-date" id="date500"></li>
+                    </ul>      								     
+			</div>
+		</div>
+
+		<script>
+            function clickclick() {
+                var checkDay = document.querySelector("#checkDay").value;
+                var calcDay = document.querySelector("#calcDay").value;
+                var now = new Date(); // 오늘 날짜 정보를 Date 객체의 인스턴스 now 객체로 만듭니다.
+                var firstDay = new Date(checkDay);  // 처음 만난 날의 날짜 정보를 firstDay 객체로 만듭니다. 
+                var toNow = now.getTime();  
+                var toFirst = firstDay.getTime();  
+                var passedTime = toNow - toFirst; 
+                var passedDay = Math.round(passedTime/(24*60*60*1000));
+                document.querySelector('#accent').innerText = passedDay + "일";  
+
+                calcDate(100);  
+                calcDate(200); 
+                calcDate(365);  
+                
+                var future = toFirst + calcDay*(1000*60*60*24);  
+                var someday = new Date(future);  
+                var year = someday.getFullYear( ); 
+                var month = someday.getMonth( ) + 1;  
+                var date = someday.getDate( ); 
+                document.querySelector("#datetest").innerText = calcDay+"일"
+                document.querySelector("#date"+500).innerText = year + "년 " + month + "월 " + date + "일";
+
+                function calcDate(days) {
+                var future = toFirst + days*(1000*60*60*24); 
+                var someday = new Date(future); 
+                var year = someday.getFullYear( );  
+                var month = someday.getMonth( ) + 1;  
+                var date = someday.getDate( );  
+                document.querySelector("#date"+days).innerText = year + "년 " + month + "월 " + date + "일";
+            }
+            };
+
+		</script>
+	</body>
+	</html>
