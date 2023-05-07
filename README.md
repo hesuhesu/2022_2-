@@ -19,6 +19,7 @@
 + 소프트웨어 실습 - 1
 + OS
 + LinuxSystem
++ Database
 
 @ middle test(23.04.20 ~ 23.04.26)
 
