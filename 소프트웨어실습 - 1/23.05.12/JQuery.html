@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!--<script src = "jquery-3.7.0.min.js"></script>
+  <script src = "jquery-migrate-3.4.0.js"></script>
+-->
+<script src = "https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src = "https://code.jquery.com/jquery-migrate-3.4.0.js"></script>
+</script>
+  </head>
+<body>
+  <script>
+    $(document).ready(function(){
+        $('*').css('backgroundColor', 'aqua'); // 순차적 처리므로 맨 마지막에 해당 코드가 존재한다면 전부 aqua색이 됨.
+        $('h1').css('backgroundColor', 'green');
+        $('#head').css('backgroundColor', 'yellow');
+        $('.classhead').css('backgroundColor', 'red');
+    })
+  </script>
+  <h1>JQuery</h1>
+  <h1 id = "head">JQuery</h1>
+  <h1 class = "classhead">JQuery</h1>
+</body>
+</html>
