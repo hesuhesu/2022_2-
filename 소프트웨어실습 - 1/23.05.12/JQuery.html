@@ -19,10 +19,24 @@
         $('h1').css('backgroundColor', 'green');
         $('#head').css('backgroundColor', 'yellow');
         $('.classhead').css('backgroundColor', 'red');
+
+        $('#didiv').css('border', 'red 1px solid'); // 이 상태에서 parent()를 해준다면 body 전체에 적용됨.
+        $('#didiv ul > li').css('backgroundColor', 'blue'); // >로 자식요소로 접근한다면 적용 x , #didiv li를 한다면 적용된다.
+        $('#didiv').find('ul').css('border', 'red 1px solid');
+        // $('ul li').css('backgroundColor', 'purple');
     })
   </script>
   <h1>JQuery</h1>
   <h1 id = "head">JQuery</h1>
   <h1 class = "classhead">JQuery</h1>
+
+  <div id = "didiv">
+    <ul>
+        <li>리스트1</li>
+    <ul>
+        <li>리스트2</li>        
+    </ul>
+    </ul>
+    </div>
 </body>
 </html>
