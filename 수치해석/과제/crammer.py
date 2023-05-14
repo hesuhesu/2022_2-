@@ -35,6 +35,8 @@ for _ in range(listNum1) :
     checkList = list(map(int, checkList))
     listA.append(checkList)
 
+Test1.readline()    
+    
 for _ in range(listNum2) :
     checkList = Test1.readline()
     checkList = int(checkList)
