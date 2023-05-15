@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!--<script src = "jquery-3.7.0.min.js"></script>
+  <script src = "jquery-migrate-3.4.0.js"></script>
+-->
+<script src = "https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src = "https://code.jquery.com/jquery-migrate-3.4.0.js"></script>
+</script>
+  </head>
+<body>
+  <script>
+    $(document).ready(function(){
+        $("<h1></h1>").text("안녕하세요").attr('id', 'test1').appendTo('body');
+        $("#test1").css({backgroundColor : 'red', color : 'white'})   
+
+        $("<div></div>").attr('class', 'target').insertAfter('#test1');
+        $(".target").css({border : "solid"})
+
+        $("<h1></h1>").text("appendTo").appendTo('.target');
+        $("<h1></h1>").text("prependTo").prependTo('.target');
+    })
+
+  </script>
+
+</body>
+</html>
