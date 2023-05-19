@@ -19,9 +19,75 @@
         $(this).attr('src', 'http://placehold.it/' + (index+1)*100 + 'x100');
       });
     });
+
+    /*$(function(){
+      $("li:even").css("color", "purple")
+      $("li:odd").css("color", "blue")
+
+      $("li:first-of-type").css("backgroundColor", "greenyellow") // 각 li의 제일 처음
+      $("li:last-of-type").css("backgroundColor", "green") // 각 li의 마지막만
+
+      $("#menu li:first").css("background-color", "yellow");
+      $("#menu li:last").css("background-color", "purple");
+
+      $("li:nth-child(3)").css("color", "yellow")
+      $("li:nth-child(3n)").css("backgroundColor", "gray")
+      $("li:nth-last-child(3)").css("color", "red")
+    });*/
+    
+    
+
+    /*$(function(){
+      $("li:only-child").css("color", "red")
+      $("span:only-child").css("backgroundColor", "gray")
+      $("#menu>li").slice(2).css("backgroundColor", "yellowgreen")
+      $("#menu li").slice(2).css("color", "blue")
+    });*/
+
+    $(function(){
+      $("li:eq(3)").css("color", "red")
+      $("li:lt(3)").css("backgroundColor", "gray")
+      $("li:gt(3)").css("color", "blue")
+      $("li:gt(3)").slice(2).css("backgroundColor", "yellowgreen")
+    });
+
+  </script>
+
+
+  <script type= "text/javascript">
+    //<![CDATA[
+      $(function(){
+        $("p:visible").css("border", "1px solid red");
+        $("p:hidden").css("color", "red");
+        // $("p:hidden").css("display", "block");
+      });
+    //]]>
   </script>
   <img />
   <img />
-  <img />
+  <img /><br>
+
+  <h1>인접 관계 <span>선택자</span></h1>
+  <ul id = "menu">
+    <li>내용1</li>
+    <li>내용2</li>
+    <li>내용3</li>
+    <ul>
+      <li>내용 3-1</li>
+      <li>내용 3-2</li>
+      <li>내용 3-3</li>
+      <li>내용 3-4</li>
+    </ul>
+    <li>내용4</li>
+    <li>내용5</li>
+    <li>내용6</li>
+  </ul>
+
+
+  <h1>탐색 선택자</h1>
+  <p>내용1</p>
+  <p style = "display:none;">내용2</p>
+
+
 </body>
 </html>
