@@ -59,10 +59,17 @@
       $(function(){
         $("p:visible").css("border", "1px solid red");
         $("p:hidden").css("color", "red");
-        // $("p:hidden").css("display", "block");
+        $("p:hidden").css("display", "block");
       });
     //]]>
+
+    $(function(){
+      $(":text").css("border", "1px dashed #100");
+      $(":checked").attr("checked", false);
+      $(":selected").attr("selected", false);
+    });
   </script>
+
   <img />
   <img />
   <img /><br>
@@ -88,6 +95,19 @@
   <p>내용1</p>
   <p style = "display:none;">내용2</p>
 
-
+  <p>
+    <label>이름</label>
+    <input type = "text">
+  </p>
+  <p>
+    <input type = "checkbox" checked = "checked">
+    <label>사용자 동의</label>
+  </p>
+  <p>
+    <select>
+      <option>네이버</option>
+      <option selected = "selected">네이트</option> 
+    </select>
+  </p>
 </body>
 </html>
