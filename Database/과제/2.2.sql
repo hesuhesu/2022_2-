@@ -1,6 +1,4 @@
-update Book
-set price = '55000'
-where bookid=3;
+ALTER TABLE NewBook ADD isbn VARCHAR(13);
 
 select *
-from Book;
+from NewBook;

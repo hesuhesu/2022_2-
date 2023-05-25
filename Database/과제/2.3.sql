@@ -1,5 +1,3 @@
-delete from Book;
+DROP TABLE NewBook;
 
 show tables;
-select *
-from Book;

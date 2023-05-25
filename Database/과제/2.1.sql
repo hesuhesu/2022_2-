@@ -1,6 +1,8 @@
-insert into
-Book(bookid, bookname, publisher, price)
-VALUES(11,  '수학의 정석', '대한수학협회', 60000);
+CREATE TABLE NewBook (
+bookid INTEGER,
+bookname VARCHAR(20),
+publisher VARCHAR(20),
+price INTEGER,
+PRIMARY KEY (bookid));
 
-select *
-from Book;
+show tables;
