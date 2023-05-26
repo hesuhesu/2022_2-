@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JQuery-event</title>
+  <!--<script src = "jquery-3.7.0.min.js"></script>
+  <script src = "jquery-migrate-3.4.0.js"></script>
+-->
+<script src = "https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src = "https://code.jquery.com/jquery-migrate-3.4.0.js"></script>
+</head>
+<body>
+  <div id = "wrap"></div>
+  <iframe src = "http://www.easypub.com/" frameborder = "0" width = "300" height = "200"></iframe>
+
+  <button id = "btn1">click</button>
+  <button id = "btn2">dbclick</button>
+  <p id = "p1">내용</p>
+
+  <buttion id = "btn3">mouseover/out</buttion><br><br>
+  <buttion id = "btn4">hover</buttion>
+  <p id = "p2">내용</p>
+
+  <script>
+      //<![CDATA[
+      $("iframe").load(function(){
+        $("#wrap").append("<p>로딩완료</p>");
+      });
+
+      $(document).ready(function(){
+        $("#wrap").append("<p>레디완료</p>");
+      });
+      //]]>
+      $(function(){
+        $("#btn1").click(function(){
+          $("#p1").css("backgroundColor", "yellow");
+        })
+
+        $("#btn2").dblclick(function(){
+          $("#p1").css("backgroundColor", "purple");
+        })
+
+        $("#btn2").dblclick();
+      });
+
+
+      $(function(){
+        $("#btn3").mouseover(function(){
+          $("#p2").css("backgroundColor", "red");
+        })
+
+        $("#btn3").mouseout(function(){
+          $("#p2").css("backgroundColor", "blue");
+        })
+
+        $("#btn4").hover(function(){
+          $("#p2").css("backgroundColor", "pink");
+        }, function(){
+          $("#p2").css("backgroundColor", "purple");
+        });
+      });
+  </script>
+
+</body>
+</html>
