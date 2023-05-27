@@ -1,5 +1,5 @@
 import os, sys
-from numpy import array, zeros, append
+from numpy import array, zeros
 import numpy as np
 
 path = (os.path.sep.join(sys.argv[0].split(os.path.sep)[:-1]))
@@ -10,13 +10,35 @@ Test1 = open(a1, 'r', encoding = 'utf8')
 Test2 = open(a2, 'w', encoding = 'utf8')
 
 def gauss(A,b):
+    print("-----------------------------------------------------------------------")
     n = len(b)
+    count = 0
     for k in range(0, n-1):
+
+        result = 0
+        index = count
+        for j in range(count,n):
+            if (result < A[j, k]):
+                result = A[j, k]
+                index = j
+
+        for z in range(n):
+            A[count, z], A[index, z] = A[index, z], A[count,z]
+        b[count], b[index] = b[index], b[count]
+
+        print("\n피봇 후 행렬 근황 \n")
+        print(A)
+        print()
+        print(b)
+
         for i in range(k+1, n):
             if A[i, k] != 0.0:
                 lam = A[i, k] / A[k, k]
                 A[i, k:n] = A[i, k:n] - lam*A[k, k:n]
                 b[i] = b[i] - lam*b[k]
+        
+        count += 1
+        print("-----------------------------------------------------------------------")
                 
     x = zeros((n))
     for k in range(n-1, -1, -1):
@@ -28,7 +50,6 @@ listA = []
 listB = []
 checkList = Test1.readline().split()
 checkList = list(map(int, checkList))
-checknum = checkList[0]
 checkindex = 0
 now_index = 0
 listA.append(checkList)
@@ -38,9 +59,6 @@ for _ in range(listNum1) :
     checkindex += 1
     checkList = Test1.readline().split()
     checkList = list(map(int, checkList))
-    if (checknum < checkList[0]): # 피보팅 과정. 제일 큰 행을 찾아주면서 index를 구한다.
-        checknum = checkList[0]
-        now_index = checkindex
     listA.append(checkList)
 
 Test1.readline()
@@ -50,10 +68,6 @@ for _ in range(listNum2) :
     checkList = int(checkList)
     listB.append(checkList)    
 
-if (now_index != 0): # index가 0이면 변경할 필요 x python은 쉽게 index swap이 가능.
-    listA[0],listA[now_index] = listA[now_index], listA[0]
-    listB[0],listB[now_index] = listB[now_index], listB[0]
-
 
 A = array(listA, dtype=np.float64)
 b = array(listB, dtype=np.float64)
@@ -61,7 +75,6 @@ print("<변환 전 A,b 근황>\n")
 print(A)
 print()
 print(b)
-print()
 resultA, resultB, x = gauss(A,b)
 print("<변환 후 A,b 근황>\n")
 print(A)
@@ -75,6 +88,7 @@ for i in range(len(b)) :
         Test2.write(str(resultA[i][j])+" ")
     Test2.write("\n")
 
+Test2.write("\n")
 for i in range(len(b)):
     Test2.write(str(resultB[i])+"\n")
 
