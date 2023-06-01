@@ -1,0 +1,78 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <button onclick="addRow()">추가하기</button>
+    <div id="container"></div>
+
+    <script>
+        var rowCounter = 0; // 행 카운터 변수
+
+        // 행을 추가하는 함수
+        function addRow() {
+            rowCounter++; // 행 카운터 증가
+            var newRow = document.createElement("div"); // 새로운 div 요소 생성
+            newRow.innerHTML = "<span id='number-" + rowCounter + "'>0</span> <button onclick='increment(" + rowCounter + ")'>+</button> <button onclick='decrement(" + rowCounter + ")'>-</button>"; // div 요소의 내용 설정
+            document.getElementById("container").appendChild(newRow); // container에 행 추가
+        }
+
+        // 행의 숫자를 증가시키는 함수
+        function increment(row) {
+            var numberElement = document.getElementById("number-" + row);
+            var number = parseInt(numberElement.innerHTML);
+            number++;
+            numberElement.innerHTML = number;
+        }
+
+        // 행의 숫자를 감소시키는 함수
+        function decrement(row) {
+            var numberElement = document.getElementById("number-" + row);
+            var number = parseInt(numberElement.innerHTML);
+            number--;
+            numberElement.innerHTML = number;
+        }
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JQuery 과제</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <button id="addButton">추가하기</button>
+    <div id="container"></div>
+
+    <script>
+        var rowCounter = 0; // 행 카운터 변수
+
+        // "추가하기" 버튼 클릭 이벤트 처리
+        $("#addButton").click(function() {
+            rowCounter++; // 행 카운터 증가
+            var newRow = $("<div>").html("<span id='number-" + rowCounter + "'>0</span> <button class='incrementButton'>+</button> <button class='decrementButton'>-</button>"); // 새로운 div 요소 생성
+            $("#container").append(newRow); // container에 행 추가
+
+            // "+" 버튼 클릭 이벤트 처리
+            newRow.find(".incrementButton").click(function() {
+                var numberElement = $(this).siblings("span");
+                var number = parseInt(numberElement.text());
+                number++;
+                numberElement.text(number);
+            });
+
+            // "-" 버튼 클릭 이벤트 처리
+            newRow.find(".decrementButton").click(function() {
+                var numberElement = $(this).siblings("span");
+                var number = parseInt(numberElement.text());
+                number--;
+                numberElement.text(number);
+            });
+        });
+    </script>
+</body>
+</html>
