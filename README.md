@@ -23,4 +23,6 @@
 
 @ middle test(23.04.20 ~ 23.04.26)
 
+@ final test(23.06.14 ~ 23.06.20)
+
 # upload Class content
