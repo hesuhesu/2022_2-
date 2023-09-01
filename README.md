@@ -25,4 +25,10 @@
 
 @ final test(23.06.14 ~ 23.06.20)
 
+---
+# 2023_2_class
+
++ 알고리즘
++ 소프트웨어 공학
+
 # upload Class content
