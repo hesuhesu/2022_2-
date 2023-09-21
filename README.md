@@ -46,11 +46,11 @@
 > 
 > 사물인터넷(IOT)
 > 
-> DL/ML
+> Machine Learning
 
-### ✍ middle test(22.10.20 ~ 22.10.26)
+### ✍ middle test(23.10.20 ~ 23.10.26)
 
-### 🙏 final test(22.12.15 ~ 22.12.21)
+### 🙏 final test(23.12.15 ~ 23.12.21)
 
 ---
 # 👨‍💻 upload Class content
