@@ -1,4 +1,5 @@
-import pandas as pd
+import sys, os
+from openpyxl import load_workbook
 
 def quick_sort(arr):
     def sort(low, high):
@@ -23,10 +24,15 @@ def quick_sort(arr):
 
     return sort(0, len(arr) - 1)
 
-excel_source = pd.read_excel('input_quick_sort.xlsx')
-listA = []
-for i in range(100) :
-    listA.append(excel_source.head(i))
+path = (os.path.sep.join(sys.argv[0].split(os.path.sep)[:-1]))
+final_path = '{}\\input_quick_sort.xlsx'.format(path)
+load_wb = load_workbook(final_path, data_only=True)
+load_ws = load_wb['Sheet1']
 
+listA = []
+for i in range(1,101) :
+    listA.append(load_ws.cell(i,1).value)
+
+print("정렬 전 : ", listA)
 quick_sort(listA)
-print("정렬 결과 : ", listA)
+print("\n정렬 후 : ", listA)
