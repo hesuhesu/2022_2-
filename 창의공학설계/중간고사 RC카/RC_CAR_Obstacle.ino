@@ -1,10 +1,3 @@
-/* 이 소스는 에듀이노(Eduino)에 의해서 번역, 수정, 작성되었고 소유권 또한 에듀이노의 것입니다. 
- *  소유권자의 허락을 받지 않고 무단으로 수정, 삭제하여 배포할 시 법적인 처벌을 받을 수도 있습니다. 
- *  
- *  에듀이노 SmartCar 예제
- *  - 스마트 자동차 스스로 눈앞에 장애물을 회피하며 움직이는 예제 -
- *   
- */
 #include <Servo.h>
 Servo EduServo;
 
@@ -50,7 +43,7 @@ void loop() {
     if (Ultra_d < 150) {
       Serial.println("150 이하.");
       motor_role(LOW, LOW);      // 후진
-      delay(1000);
+      delay(700);
       analogWrite(RightMotor_E_pin, 0);  
       analogWrite(LeftMotor_E_pin, 0);
       delay(200);
@@ -65,21 +58,21 @@ void loop() {
         Serial.println("우회전.");
         analogWrite(RightMotor_E_pin, 0);  
         analogWrite(LeftMotor_E_pin, 0);
-        delay(500);
+        delay(300);
         motor_role(LOW, LOW);    // 후진
-        delay(500);
+        delay(300);
         motor_role(LOW, HIGH);   // 우회전
-        delay(800);
+        delay(500);
       }
       else if (val == 1) {
         Serial.println("좌회전.");
         analogWrite(RightMotor_E_pin, 0);  
         analogWrite(LeftMotor_E_pin, 0);
-        delay(500);
+        delay(300);
         motor_role(LOW, LOW);   // 후진
-        delay(500);
+        delay(300);
         motor_role(HIGH, LOW);  // 좌회전
-        delay(800);
+        delay(500);
       }
     }
   }
@@ -110,14 +103,14 @@ int Ultrasonic(){
 }
 
 int Servo_con(){
-  EduServo.write(30);
+  EduServo.write(90);
   delay(300);
   int Ult_30 = Ultrasonic();
-  delay(700);
-  EduServo.write(150);
+  delay(500);
+  EduServo.write(90);
   delay(300);
   int Ult_150 = Ultrasonic();
-  delay(700);
+  delay(500);
 
   if(Ult_30 > Ult_150){
      val = 1;
