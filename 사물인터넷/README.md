@@ -14,3 +14,7 @@
 ## 23.11.09 수업
 
 - wifiClient
+
+## 23.11.14 수업
+
+- wifi + serverHtml
