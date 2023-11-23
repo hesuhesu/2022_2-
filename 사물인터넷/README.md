@@ -18,3 +18,11 @@
 ## 23.11.14 수업
 
 - wifi + serverHtml
+
+## 23.11.21 수업
+
+- serverHtml + temp, hum sensor
+
+## 23.11.23 수업
+
+- connected RasberryPi OS & temp, hum sensor connect serverHtml 
