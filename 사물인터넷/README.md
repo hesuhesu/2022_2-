@@ -26,3 +26,7 @@
 ## 23.11.23 수업
 
 - connected RasberryPi OS & temp, hum sensor connect serverHtml 
+
+## 23.11.28 수업
+
+- MQTTlens
