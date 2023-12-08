@@ -30,3 +30,7 @@
 ## 23.11.28 수업
 
 - MQTTlens
+
+## 23.12.08 수업
+
+- MQTT temperature + humidity connect
