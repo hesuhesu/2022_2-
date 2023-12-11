@@ -34,3 +34,7 @@
 ## 23.12.08 수업
 
 - MQTT temperature + humidity connect
+
+## 23.12.11 수업
+
+- MQTT connected Relay Module + Led On / Off
