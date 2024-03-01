@@ -50,9 +50,19 @@
 > 
 > Machine Learning
 
+
 ### ✍ middle test(23.10.20 ~ 23.10.26)
 
 ### 🙏 final test(23.12.16 ~ 23.12.22)
 
 ---
-# 👨‍💻 upload Class content
+# ⭐ 2024 - 1st semester
+
+> C++
+>
+> 컴퓨터그래픽스
+> 
+> 소프트웨어 프로젝트 - 1
+
+---
+# 👨‍💻 upload class content...
