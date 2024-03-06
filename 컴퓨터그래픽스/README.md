@@ -5,6 +5,12 @@
 - 사용 ide : visual studio
     - ide 설정 및 설치 파일은 차후 공개
 
+### 24.03.01
+
+- [x] IRIT install
+- [x] openGL install
+___
+
 ### 24.03.05
 
-- [x] 이론 수업 
+- [x] IRIT 이론 & stl file create
