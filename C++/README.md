@@ -4,6 +4,8 @@
 - 사용 ide : visual studio
     - 이론용 및 가벼운 실습용.. 다른 설정 x
 
+___
+
 ### 24.03.06
 
 - [x] C++ basic & OOP theory
