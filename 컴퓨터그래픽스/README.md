@@ -5,6 +5,8 @@
 - 사용 ide : visual studio
     - ide 설정 및 설치 파일은 차후 공개
 
+___
+
 ### 24.03.01
 
 - [x] IRIT install
@@ -14,3 +16,5 @@ ___
 ### 24.03.05
 
 - [x] IRIT 이론 & stl file create
+
+___
