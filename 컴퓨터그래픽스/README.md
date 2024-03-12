@@ -18,3 +18,9 @@ ___
 - [x] IRIT 이론 & stl file create
 
 ___
+
+### 24.03.12
+
+- [x] GL Vertex 2d, 3d 실습
+
+___
