@@ -11,3 +11,9 @@ ___
 - [x] C++ basic & OOP theory
 
 ___
+
+### 24.03.12
+
+- [x] C++ I/O method
+
+___
