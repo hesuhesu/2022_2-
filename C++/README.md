@@ -20,4 +20,4 @@ ___
 
 ### 24.03.13
 
-- [ ] C++ String type
+- [ ] C++ Char & String type
