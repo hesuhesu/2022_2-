@@ -17,3 +17,7 @@ ___
 - [x] C++ I/O method
 
 ___
+
+### 24.03.13
+
+- [ ] C++ String type
