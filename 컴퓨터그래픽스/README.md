@@ -30,3 +30,7 @@ ___
 - [x] xml 을 통한 SVG 파일 만들기
 
 ___
+
+### 24.03.19
+
+- [x] GL using manuals
