@@ -20,4 +20,12 @@ ___
 
 ### 24.03.13
 
-- [ ] C++ Char & String type
+- [x] C++ Char & String type
+
+___
+
+### 24.03.19
+
+- [ ] C++ class & oop
+
+___
