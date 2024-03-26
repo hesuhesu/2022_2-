@@ -40,3 +40,8 @@ ___
     - chapter 3
 
 ___
+
+### 24.03.26
+
+- [x] C++ function programming
+    - basic grammer
