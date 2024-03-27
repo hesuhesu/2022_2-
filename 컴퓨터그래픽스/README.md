@@ -36,3 +36,9 @@ ___
 - [x] GL using manuals
 
 ___
+
+### 24.03.26
+
+- [x] Learning Beizer Curve 
+
+___
