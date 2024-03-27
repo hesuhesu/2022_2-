@@ -47,3 +47,10 @@ ___
     - basic grammer
 
 ___
+
+### 24.03.27
+
+- [x] function programming & pointer
+    - chapter 4
+
+___
