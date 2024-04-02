@@ -63,5 +63,7 @@ ___
 
 - [x] pointer call by address & call by value
     - chapter 4
+- [x] class review
+    - chapter 3
 
 ___
