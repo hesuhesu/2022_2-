@@ -6,6 +6,8 @@
 
 ___
 
+## ✅ 3월의 강의
+
 ### 24.03.06
 
 - [x] basic grammer & OOP theory
@@ -50,7 +52,16 @@ ___
 
 ### 24.03.27
 
-- [x] function programming & pointer
+- [x] function programming & basic pointer
+    - chapter 4
+
+___
+
+## ✅ 4월의 강의
+
+### 24.04.02
+
+- [x] pointer call by address & call by value
     - chapter 4
 
 ___
