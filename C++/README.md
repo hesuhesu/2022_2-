@@ -67,12 +67,12 @@ ___
 
 - [x] pointer call by address & call by value
     - chapter 4
-- [x] class review
+- [x] class review - 1
     - chapter 3
 
 ___
 
 ### 24.04.03
 
-- [x] object pointer
-    - chapter 4
+- [x] class review - 2
+    - chapter 3
