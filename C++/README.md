@@ -10,7 +10,9 @@ ___
 
 ### 24.03.06
 
-- [x] basic grammer & OOP theory
+- [x] basic c++ grammer
+    - chapter 1
+- [x] OOP theory
     - chapter 1
 
 ___
@@ -46,13 +48,15 @@ ___
 ### 24.03.26
 
 - [x] function programming
-    - basic grammer
+    - chapter 3
 
 ___
 
 ### 24.03.27
 
-- [x] function programming & basic pointer
+- [x] function programming 
+    - chapter 3
+- [x] basic pointer
     - chapter 4
 
 ___
@@ -67,3 +71,8 @@ ___
     - chapter 3
 
 ___
+
+### 24.04.03
+
+- [x] object pointer
+    - chapter 4
