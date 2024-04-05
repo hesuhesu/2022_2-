@@ -7,6 +7,8 @@
 
 ___
 
+## ✅ 3월의 강의
+
 ### 24.03.01
 
 - [x] IRIT install
@@ -40,5 +42,13 @@ ___
 ### 24.03.26
 
 - [x] Learning Beizer Curve 
+
+___
+
+## ✅ 4월의 강의
+
+### 24.04.02
+
+- [x] Bounding Volume
 
 ___
