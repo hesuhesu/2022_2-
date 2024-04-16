@@ -76,38 +76,69 @@ void display() {
     glColor3f(1, 0, 1);
     DrawCircle(0.3);
 
+    //
+
     glPopMatrix(); // for Moon
     glPopMatrix(); // for Earth
     glPopMatrix(); // for Sun
+    
 
     //Mars
 
+    glPushMatrix();
+    glRotated(timeIdx / 687.0 * 360.0, 0, 0, 1);
+    glTranslated(10, 0.0, 0.0);
+    glColor3f(1, 0.5, 0);
+    DrawCircle(0.5);
+
+    glPopMatrix(); // for Mars
+
     //Jupiter
+
+    glPushMatrix();
+    glRotated(timeIdx / 4333.0 * 360.0, 0, 0, 1);
+    glTranslated(15, 0.0, 0.0);
+    glColor3f(0, 1, 0);
+    DrawCircle(2.0);
+
+    glPopMatrix(); // for Jupiter
 
     //Saturn
 
+    glPushMatrix();
+    glRotated(timeIdx / 10585.0 * 360.0, 0, 0, 1); // 365 * 29 = 10,585
+    glTranslated(20, 0.0, 0.0);
+    glColor3f(1.0, 1.0, 0);
+    DrawCircle(1.0);
+
     //Titan
 
+    glPushMatrix();
+    glRotated(timeIdx / 16.0 * 360.0, 0, 0, 1);
+    glTranslated(0, 2.0, 0.0);
+    glColor3f(0.5, 0, 1);
+    DrawCircle(0.3);
 
+    glPopMatrix(); // for Saturn
+    glPopMatrix(); // for Titan
+    
     // ------------------ Matrix Stack (End) ------------------
 
     // ------------------ Look around the model ----------------
-    //gluLookAt(10 * sin(timeIdx * PI / 180.0),	//eye x
-       //   0,				//eye y
-       //   10 * cos(timeIdx * PI / 180.0),	//eye z
-       //   0,				//center x
-       //   0,				//center y
-       //   0,				//center z
-       //   0,				//up x
-       //   1,				//up y
-       //   0);				//up z
+    //gluLookAt(5 * sin(timeIdx * PI / 180.0),	//eye x
+    //      0,				//eye y
+    //      5 * cos(timeIdx * PI / 180.0),	//eye z
+    //      0,				//center x
+    //      0,				//center y
+    //      0,				//center z
+    //      0,				//up x
+    //      1,				//up y
+    //      0);				//up z
     //glLineWidth(1.0);
     //glColor3f(0, 0, 0);
     //glutWireTeapot(2.0);
     //glColor3f(1, 0, 0);
     // ------------------ Look around the model (End)-----------
-
-
 
     glFinish();
     glutSwapBuffers();
