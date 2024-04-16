@@ -91,3 +91,10 @@ ___
     - chapter 3
 
 ___
+
+### 24.04.16
+
+- [x] header & class
+    - chapter 3
+- [x] object pointer
+    - chapter 4
