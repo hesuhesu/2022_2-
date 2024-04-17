@@ -98,3 +98,12 @@ ___
     - chapter 3
 - [x] object pointer
     - chapter 4
+
+___
+
+### 24.04.17
+
+- [x] object array
+    - chapter 4
+
+___
