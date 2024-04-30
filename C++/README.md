@@ -110,7 +110,7 @@ ___
 
 ### 24.04.30
 
-- [x] this pointer
+- [x] this pointer & string class
     - chapter 4
 
 ___
