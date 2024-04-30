@@ -107,3 +107,10 @@ ___
     - chapter 4
 
 ___
+
+### 24.04.30
+
+- [x] this pointer
+    - chapter 4
+
+___
