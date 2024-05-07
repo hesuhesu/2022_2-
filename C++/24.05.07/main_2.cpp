@@ -4,10 +4,17 @@ using namespace std;
 class Circle {
 	int radius;
 public:
-	Circle() { radius = 1; }
-	Circle(int radius) { this->radius = radius; }
+	Circle() { 
+		radius = 1;
+		cout << radius << " -> 생성\n";
+	}
+	Circle(int radius) {
+		this->radius = radius;
+		cout << radius << " -> 생성\n";
+	}
 	void setRadius(int radius) { this->radius = radius; }
 	double getArea() { return 3.14 * radius * radius; }
+	~Circle() { cout << radius << " -> 소멸\n"; }
 };
 
 Circle getCircle() {
