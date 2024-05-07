@@ -114,3 +114,14 @@ ___
     - chapter 4
 
 ___
+
+# ✅ 5월의 강의
+
+<br>
+
+### 24.05.07
+
+- [x] Function & reference
+    - chapter 5
+
+___
