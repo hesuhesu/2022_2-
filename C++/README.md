@@ -35,14 +35,14 @@ ___
 
 ### 24.03.19
 
-- [x] (class & oop) - 1
+- [x] class & oop - 1
     - chapter 3
 
 ___
 
 ### 24.03.20
 
-- [x] (class & oop) - 2
+- [x] class & oop - 2
     - chapter 3
 
 ___
@@ -83,7 +83,7 @@ ___
 
 ### 24.04.09
 
-- [x] (class & oop) - 3
+- [x] class & oop - 3
     - chapter 3
 
 ___
@@ -117,7 +117,16 @@ ___
 
 ### 24.05.07
 
-- [x] Function & reference
+- [x] Function & reference - 1
+    - chapter 5
+
+___
+
+### 24.05.08
+
+- [x] Function & reference - 2
+    - chapter 5
+- [x] Deep Copy
     - chapter 5
 
 ___
