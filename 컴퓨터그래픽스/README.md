@@ -78,3 +78,9 @@ ___
 - [x] QTViewer + pmp
 
 ___
+
+### 24.05.14
+
+- [x] Traverse a Mesh with the half-edge structure
+
+___
