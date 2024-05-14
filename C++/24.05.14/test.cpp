@@ -7,17 +7,22 @@ class Person {
 	double weigth;
 	string name;
 public:
-	Person() {
-		id = 1;
-		name = "Grace";
-		weigth = 20.5;
-	}
 	/*Person(int id = 1, string name = "Grace", double weigth = 20.5) {
 		this->id = id;
 		this->name = name;
 		this->weigth = weigth;
 	}*/
-	Person(int id, string name, double weigth = 20.5) {
+	Person() {
+		id = 1;
+		name = "Grace";
+		weigth = 20.5;
+	}
+	Person(int id, string name) {
+		this->id = id;
+		this->name = name;
+		weigth = 20.5;
+	}
+	Person(int id, string name, double weigth) {
 		this->id = id;
 		this->name = name;
 		this->weigth = weigth;
