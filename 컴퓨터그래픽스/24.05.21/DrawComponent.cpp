@@ -10,7 +10,7 @@
 #include "pmp/io/io.h"
 #include "pmp/algorithms/normals.h"
 
-#define CASE_1_
+//#define CASE_1_
 
 //#define CASE_2_
 
@@ -18,7 +18,7 @@
 
 //#define CASE_4_
 
-//#define CASE_5_
+#define CASE_5_
 
 void DrawComponent::Init()
 {
@@ -127,19 +127,19 @@ void DrawComponent::Draw()
     glLineWidth(3.0);
 
 #ifdef CASE_1_
-    for (auto f : mesh.faces()) {
+    /*for (auto f : mesh.faces()) {
 	glNormal3dv(fn[f].data());
 	DrawFace(&mesh, f);
-    }
+    }*/
 
- //   for (auto f : mesh.faces()) {
-	//glBegin(GL_POLYGON);
-	//for(auto v : mesh.vertices(f)) {
-	//    glNormal3dv(vn[v].data());
-	//    glVertex3dv(mesh.position(v).data());
-	//}
-	//glEnd();
- //   }
+    for (auto f : mesh.faces()) {
+	glBegin(GL_POLYGON);
+	for(auto v : mesh.vertices(f)) {
+	    glNormal3dv(vn[v].data());
+	    glVertex3dv(mesh.position(v).data());
+	}
+	glEnd();
+    }
 #endif
 
 #if defined CASE_3_ || defined CASE_4_
@@ -170,14 +170,17 @@ void DrawComponent::Draw()
 
 #if defined CASE_5_
     for (auto f : mesh.faces()) {
-	glNormal3dv(fn[f].data());
-
-	if (mesh.is_boundary(f))
-	    glColor3f(1, 0, 0);
-	else
-	    glColor3f(1, 1, 1);
-
-	DrawFace(&mesh, f);
+	    glNormal3dv(fn[f].data());
+        if (mesh.is_boundary(f)) {
+            glColor3f(1, 0, 0);
+        }
+	    else glColor3f(1, 1, 1);
+        for (auto k : mesh.vertices(f)) {
+            if (mesh.is_boundary(k)) {
+                glColor3f(1, 0, 0);
+            }
+        }
+	    DrawFace(&mesh, f);
     }
 #endif
 }
