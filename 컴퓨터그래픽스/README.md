@@ -84,3 +84,9 @@ ___
 - [x] Traverse a Mesh with the half-edge structure
 
 ___
+
+### 24.05.21
+
+- [x] Add attributes, Remove elements
+
+___
