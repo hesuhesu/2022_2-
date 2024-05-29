@@ -147,7 +147,14 @@ ___
 
 ### 24.05.22
 
-- [x] Friend Function & Operator Overloading Function
+- [x] Friend Function & Operator Overloading Function - 1
+    - Chapter 7
+
+___
+
+### 24.05.29
+
+- [x] Friend Function & Operator Overloading Function - 2
     - Chapter 7
 
 ___
