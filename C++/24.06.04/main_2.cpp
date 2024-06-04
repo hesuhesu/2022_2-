@@ -42,7 +42,7 @@ bool ColorPoint::equals(ColorPoint p) {
 
 int main() {
 	Point p; // 기본 클래스의 객체 생성
-	p.set(2, 3);													// ② 오류
+	p.set(2, 3);													// ②
 	p.x = 5;													// ③ 오류
 	p.y = 5;													// ④ 오류
 	p.showPoint();
