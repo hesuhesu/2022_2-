@@ -158,3 +158,14 @@ ___
     - Chapter 7
 
 ___
+
+<br>
+
+# ✅ 6월의 강의
+
+### 24.06.04
+
+- [x] Inheritance
+    - Chapter 8
+
+___
