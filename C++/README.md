@@ -165,7 +165,14 @@ ___
 
 ### 24.06.04
 
-- [x] Inheritance
+- [x] Inheritance - 1
+    - Chapter 8
+
+___
+
+### 24.06.05
+
+- [x] Inheritance - 2
     - Chapter 8
 
 ___
