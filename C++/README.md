@@ -176,3 +176,10 @@ ___
     - Chapter 8
 
 ___
+
+### 24.06.10
+
+- [x] Virtual function & Overriding
+    - Chapter 9
+
+___
