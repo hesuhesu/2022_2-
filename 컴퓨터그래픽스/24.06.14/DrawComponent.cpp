@@ -35,46 +35,46 @@ void DrawComponent::Init()
 void DrawComponent::CalIdx(int idx)
 {
     if (!mesh.has_vertex_property("v:index"))
-	mesh.add_vertex_property<int>("v:index");
+        mesh.add_vertex_property<int>("v:index");
     auto vi = mesh.get_vertex_property<int>("v:index");
 
     for (auto v : mesh.vertices())
-	vi[v] = -1;
+        vi[v] = -1;
 
     vi[pmp::Vertex(idx)] = 0;
 
     while (true) {
-	    bool isChanged = false;
-	    for (auto v : mesh.vertices()) {
-	        if (vi[v] >= 0) {
-		        for (auto nv : mesh.vertices(v)) {
-		            if (vi[nv] == -1) {
-			            vi[nv] = vi[v] + 1;
-			            isChanged = true;
-		            }
-		        }
-	        }
-	}
+        bool isChanged = false;
+        for (auto v : mesh.vertices()) {
+            if (vi[v] >= 0) {
+                for (auto nv : mesh.vertices(v)) {
+                    if (vi[nv] == -1) {
+                        vi[nv] = vi[v] + 1;
+                        isChanged = true;
+                    }
+                }
+            }
+        }
 
-	if (!isChanged)
-	    break;
+        if (!isChanged)
+            break;
     }
 
     int maxIdx = -1;
     for (auto v : mesh.vertices())
-	maxIdx = std::max(maxIdx, vi[v]);
+        maxIdx = std::max(maxIdx, vi[v]);
 
     // colorize vertices based on index (with hsv)
     if (!mesh.has_vertex_property("v:color"))
-	mesh.add_vertex_property<pmp::Color>("v:color");
+        mesh.add_vertex_property<pmp::Color>("v:color");
     auto vc = mesh.get_vertex_property<pmp::Color>("v:color");
 
     for (auto v : mesh.vertices()) {
-	vc[v] = GetVertexColor(vi[v], maxIdx);
+        vc[v] = GetVertexColor(vi[v], maxIdx);
     }
 }
 
-void DrawComponent::HoleFilling() 
+void DrawComponent::HoleFilling()
 {
     printf("Hole filling..");
 
@@ -87,12 +87,12 @@ void DrawComponent::HoleFilling()
     }
     pmp::fill_hole(mesh, he);
 
-    pmp::vertex_normal(mesh);
+    pmp::vertex_normals(mesh);
 
     pmp::face_normals(mesh);
 }
 
-void DrawComponent::Subdivision() 
+void DrawComponent::Subdivision()
 {
     printf("Subdivision ...");
     pmp::linear_subdivision(mesh);
@@ -139,7 +139,7 @@ void DrawComponent::Draw()
 
 }
 
-void DrawComponent::DrawFace(pmp::SurfaceMesh *mesh, pmp::Face f, bool isWire) {
+void DrawComponent::DrawFace(pmp::SurfaceMesh* mesh, pmp::Face f, bool isWire) {
     glBegin(isWire ? GL_LINE_LOOP : GL_POLYGON);
     for (auto v : mesh->vertices(f)) {
         glVertex3dv(mesh->position(v).data());
@@ -164,9 +164,9 @@ void DrawComponent::AddAttributes()
 
     for (auto f : mesh.faces())
     {
-	auto n = fn[f];
-	pmp::Color c(std::abs(n[0]), std::abs(n[1]), std::abs(n[2]));
-	fc[f] = c;
+        auto n = fn[f];
+        pmp::Color c(std::abs(n[0]), std::abs(n[1]), std::abs(n[2]));
+        fc[f] = c;
     }
 }
 
@@ -187,10 +187,10 @@ pmp::Color DrawComponent::HSV2RGB(HSV hsv)
     long i;
 
     if (hsv.s <= 0.0) {
-	rgb[0] = hsv.v;
-	rgb[1] = hsv.v;
-	rgb[2] = hsv.v;
-	return rgb;
+        rgb[0] = hsv.v;
+        rgb[1] = hsv.v;
+        rgb[2] = hsv.v;
+        return rgb;
     }
 
     hh = hsv.h;
@@ -204,37 +204,36 @@ pmp::Color DrawComponent::HSV2RGB(HSV hsv)
 
     switch (i) {
     case 0:
-	rgb[0] = hsv.v;
-	rgb[1] = t;
-	rgb[2] = p;
-	break;
+        rgb[0] = hsv.v;
+        rgb[1] = t;
+        rgb[2] = p;
+        break;
     case 1:
-	rgb[0] = q;
-	rgb[1] = hsv.v;
-	rgb[2] = p;
-	break;
+        rgb[0] = q;
+        rgb[1] = hsv.v;
+        rgb[2] = p;
+        break;
     case 2:
-	rgb[0] = p;
-	rgb[1] = hsv.v;
-	rgb[2] = t;
-	break;
+        rgb[0] = p;
+        rgb[1] = hsv.v;
+        rgb[2] = t;
+        break;
     case 3:
-	rgb[0] = p;
-	rgb[1] = q;
-	rgb[2] = hsv.v;
-	break;
+        rgb[0] = p;
+        rgb[1] = q;
+        rgb[2] = hsv.v;
+        break;
     case 4:
-	rgb[0] = t;
-	rgb[1] = p;
-	rgb[2] = hsv.v;
-	break;
+        rgb[0] = t;
+        rgb[1] = p;
+        rgb[2] = hsv.v;
+        break;
     case 5:
     default:
-	rgb[0] = hsv.v;
-	rgb[1] = p;
-	rgb[2] = q;
-	break;
+        rgb[0] = hsv.v;
+        rgb[1] = p;
+        rgb[2] = q;
+        break;
     }
     return rgb;
 }
-
