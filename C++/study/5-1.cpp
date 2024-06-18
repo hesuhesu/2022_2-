@@ -35,4 +35,11 @@ int main() {
 	Circle waffle(30);
 	increase(waffle);
 	cout << waffle.getRadius() << endl;
+
+	/*
+	생성자 실행 radius = 30
+	소멸자 실행 radius = 31
+	30
+	소멸자 실행 radius = 30
+	*/
 }
