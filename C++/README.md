@@ -147,7 +147,39 @@ ___
 
 ### 24.05.22
 
-- [x] Friend Function & Operator Overloading Function
+- [x] Friend Function & Operator Overloading Function - 1
     - Chapter 7
+
+___
+
+### 24.05.29
+
+- [x] Friend Function & Operator Overloading Function - 2
+    - Chapter 7
+
+___
+
+<br>
+
+# ✅ 6월의 강의
+
+### 24.06.04
+
+- [x] Inheritance - 1
+    - Chapter 8
+
+___
+
+### 24.06.05
+
+- [x] Inheritance - 2
+    - Chapter 8
+
+___
+
+### 24.06.10
+
+- [x] Virtual function & Overriding
+    - Chapter 9
 
 ___
